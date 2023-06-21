@@ -9,20 +9,9 @@ on:
   pull_request:
     branches: [ "dev" ]
 
-env:
-  PORT=${{ secrets.PORT }}
-  HOST=${{ secrets.HOST }}
-  NODE_ENV=${{ secrets.NODE_ENV }}
-  APP_KEY=${{ secrets.APP_KEY }}
-  DRIVE_DISK=${{ secrets.DRIVE_DISK }}
-  SESSION_DRIVER=${{ secrets.SESSION_DRIVER }}
-  CACHE_VIEWS=${{ secrets.CACHE_VIEWS }}
-  DB_CONNECTION=${{ secrets.DB_CONNECTION }}
-  PG_HOST=${{ secrets.PG_HOST }}
-  PG_PORT=${{ secrets.PG_PORT }}
-  PG_USER=${{ secrets.PG_USER }}
-  PG_PASSWORD=${{ secrets.PG_PASSWORD }}
-  PG_DB_NAME=${{ secrets.PG_DB_NAME }}
+
+
+
 
 jobs:
 
@@ -30,6 +19,21 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: 'development'
+    env:
+      PORT=${{ env.PORT }}
+      HOST=${{ env.HOST }}
+      NODE_ENV=${{ env.NODE_ENV }}
+      APP_KEY=${{ secrets.APP_KEY }}
+      DRIVE_DISK=${{ env.DRIVE_DISK }}
+      SESSION_DRIVER=${{ env.SESSION_DRIVER }}
+      CACHE_VIEWS=${{ env.CACHE_VIEWS }}
+      DB_CONNECTION=${{ env.DB_CONNECTION }}
+      PG_HOST=${{ env.PG_HOST }}
+      PG_PORT=${{ env.PG_PORT }}
+      PG_USER=${{ env.PG_USER }}
+      PG_PASSWORD=${{ env.PG_PASSWORD }}
+      PG_DB_NAME=${{ env.PG_DB_NAME }}
 
     strategy:
       matrix:

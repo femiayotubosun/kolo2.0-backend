@@ -28,6 +28,7 @@ jobs:
       DRIVE_DISK:${{ vars.DRIVE_DISK }}
       SESSION_DRIVER:${{ vars.SESSION_DRIVER }}
       CACHE_VIEWS:${{ vars.CACHE_VIEWS }}
+
       DB_CONNECTION:${{ vars.DB_CONNECTION }}
       PG_HOST:${{ vars.PG_HOST }}
       PG_PORT:${{ vars.PG_PORT }}

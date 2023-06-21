@@ -21,19 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'development'
     env:
-      PORT=${{ vars.PORT }}
-      HOST=${{ vars.HOST }}
-      NODE_ENV=${{ vars.NODE_ENV }}
-      APP_KEY=${{ secrets.APP_KEY }}
-      DRIVE_DISK=${{ vars.DRIVE_DISK }}
-      SESSION_DRIVER=${{ vars.SESSION_DRIVER }}
-      CACHE_VIEWS=${{ vars.CACHE_VIEWS }}
-      DB_CONNECTION=${{ vars.DB_CONNECTION }}
-      PG_HOST=${{ vars.PG_HOST }}
-      PG_PORT=${{ vars.PG_PORT }}
-      PG_USER=${{ vars.PG_USER }}
-      PG_PASSWORD=${{ vars.PG_PASSWORD }}
-      PG_DB_NAME=${{ vars.PG_DB_NAME }}
+      PORT:${{ vars.PORT }}
+      HOST:${{ vars.HOST }}
+      NODE_ENV:${{ vars.NODE_ENV }}
+      APP_KEY:${{ secrets.APP_KEY }}
+      DRIVE_DISK:${{ vars.DRIVE_DISK }}
+      SESSION_DRIVER:${{ vars.SESSION_DRIVER }}
+      CACHE_VIEWS:${{ vars.CACHE_VIEWS }}
+      DB_CONNECTION:${{ vars.DB_CONNECTION }}
+      PG_HOST:${{ vars.PG_HOST }}
+      PG_PORT:${{ vars.PG_PORT }}
+      PG_USER:${{ vars.PG_USER }}
+      PG_PASSWORD:${{ vars.PG_PASSWORD }}
+      PG_DB_NAME:${{ vars.PG_DB_NAME }}
 
     strategy:
       matrix:

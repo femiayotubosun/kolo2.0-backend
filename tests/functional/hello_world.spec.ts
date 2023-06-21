@@ -4,5 +4,9 @@ test('display welcome page', async ({ client }) => {
   const response = await client.get('/')
 
   response.assertStatus(200)
-  response.assertTextIncludes('<h1 class="title"> It Works! </h1>')
+  response.assertBodyContains({
+    status_code: 200,
+    status: 'Success',
+    message: `Welcome to the KOLO BANK API`,
+  })
 })

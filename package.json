@@ -9,7 +9,8 @@
     "test": "node ace test",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "prepare": "husky intall"
+    "prepare": "husky intall .husky",
+    "test": "node ace test"
   },
   "eslintConfig": {
     "extends": [

@@ -129,7 +129,7 @@ export const ACCOUNT_NAME_RESOLUTION_SERVICE_IS_UNAVAILABLE =
   'Account Name Resolution Service is Unavailable'
 export const FAILURE_MESSAGE_PREFIX = 'Failure Message =>'
 export const FAILURE_REASON_PREFIX = 'Failure Reason =>'
-export const WELCOME_TO_API = 'Welcome to the Akiba API'
+export const WELCOME_TO_API = 'Welcome to the KOLO BANK API'
 
 // Settlement Account
 export const SETTLEMENT_ACCOUNT_PROFILED_SUCCESSFULLY = 'Settlement Account profiled Successfully'

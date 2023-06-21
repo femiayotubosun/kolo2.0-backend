@@ -9,8 +9,7 @@
     "test": "node ace test",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "prepare": "husky intall .husky",
-    "test": "node ace test"
+    "prepare": "husky intall .husky"
   },
   "eslintConfig": {
     "extends": [
@@ -73,6 +72,7 @@
     "luxon": "^3.3.0",
     "pg": "^8.11.0",
     "proxy-addr": "^2.0.7",
+    "randomstring": "^1.3.0",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21"
   }

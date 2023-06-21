@@ -1,0 +1,57 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+
+
+
+
+jobs:
+
+
+  build:
+
+    runs-on: ubuntu-latest
+    environment: 'development'
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create and Populate .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_PORT: ${{ vars.PORT }}
+          envkey_HOST: ${{ vars.HOST }}
+          envkey_NODE_ENV: ${{ vars.NODE_ENV }}
+          envkey_APP_KEY: ${{ secrets.APP_KEY }}
+          envkey_DRIVE_DISK: ${{ vars.DRIVE_DISK }}
+          envkey_SESSION_DRIVER: ${{ vars.SESSION_DRIVER }}
+          envkey_CACHE_VIEWS: ${{ vars.CACHE_VIEWS }}
+
+          envkey_DB_CONNECTION: ${{ vars.DB_CONNECTION }}
+          envkey_PG_HOST: ${{ vars.PG_HOST }}
+          envkey_PG_PORT: ${{ vars.PG_PORT }}
+          envkey_PG_USER: ${{ vars.PG_USER }}
+          envkey_PG_PASSWORD: ${{ vars.PG_PASSWORD }}
+          envkey_PG_DB_NAME: ${{ vars.PG_DB_NAME }}
+          file_name: '.env'
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test

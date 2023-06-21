@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "dev" ]
 
+
+
+
+
 jobs:
 
 
@@ -16,20 +20,20 @@ jobs:
 
     runs-on: ubuntu-latest
     environment: 'development'
-#    env:
-##      PORT=${{ env.PORT }}
-##      HOST=${{ env.HOST }}
-##      NODE_ENV=${{ env.NODE_ENV }}
-#       APP_KEY=${{ secrets.APP_KEY }}
-##      DRIVE_DISK=${{ env.DRIVE_DISK }}
-##      SESSION_DRIVER=${{ env.SESSION_DRIVER }}
-##      CACHE_VIEWS=${{ env.CACHE_VIEWS }}
-##      DB_CONNECTION=${{ env.DB_CONNECTION }}
-##      PG_HOST=${{ env.PG_HOST }}
-##      PG_PORT=${{ env.PG_PORT }}
-##      PG_USER=${{ env.PG_USER }}
-##      PG_PASSWORD=${{ env.PG_PASSWORD }}
-##      PG_DB_NAME=${{ env.PG_DB_NAME }}
+    env:
+      PORT=${{ vars.PORT }}
+      HOST=${{ vars.HOST }}
+      NODE_ENV=${{ vars.NODE_ENV }}
+      APP_KEY=${{ secrets.APP_KEY }}
+      DRIVE_DISK=${{ vars.DRIVE_DISK }}
+      SESSION_DRIVER=${{ vars.SESSION_DRIVER }}
+      CACHE_VIEWS=${{ vars.CACHE_VIEWS }}
+      DB_CONNECTION=${{ vars.DB_CONNECTION }}
+      PG_HOST=${{ vars.PG_HOST }}
+      PG_PORT=${{ vars.PG_PORT }}
+      PG_USER=${{ vars.PG_USER }}
+      PG_PASSWORD=${{ vars.PG_PASSWORD }}
+      PG_DB_NAME=${{ vars.PG_DB_NAME }}
 
     strategy:
       matrix:
@@ -38,14 +42,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - name: Create and Populate .env file
+        run: echo $APP_KEY
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-#      - run: npm ci
-#      - run: npm run build --if-present
-      - run: echo ${{ env.PORT }}
-#      - run: npm test
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test

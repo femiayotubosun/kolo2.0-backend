@@ -1,9 +1,9 @@
 import { DateTime } from 'luxon'
 
 export default interface OtpTokenInterface {
-  tokenId: number
+  id: number
 
-  tokenIdentifier: string
+  identifier: string
 
   tokenType: 'email-verification' | 'change-password' | 'reset-password'
 

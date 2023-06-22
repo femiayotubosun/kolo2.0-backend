@@ -6,6 +6,7 @@ import UpdateOtpTokenRecordOptions from 'App/Project/Client/UserManagement/TypeC
 import businessConfig from 'Config/businessConfig'
 import { DateTime } from 'luxon'
 import GetActiveOtpTokenOptions from 'App/Project/Client/UserManagement/TypeChecking/OtpToken/GetActiveOtpTokenOptions'
+import numberStringGenerator from 'App/Common/Helpers/GeneralPurpose/numberStringGenerator'
 
 export default class OtpTokenActions {
   private static OTP_TOKEN_RECORD_NOT_FOUND = NULL_OBJECT
@@ -152,6 +153,20 @@ export default class OtpTokenActions {
     await otpRecord.save()
 
     return otpRecord
+  }
+
+  /**
+   *
+   * @description Method to generate a random token of specified length
+   * @author FATE
+   * @returns {string} The Generated Token
+   * @memberof OtpTokenActions
+   */
+  public static generateOtpToken(tokenLength: number): string {
+    return numberStringGenerator({
+      characterLength: tokenLength,
+      outputOption: 'numeric',
+    })
   }
 
   /**

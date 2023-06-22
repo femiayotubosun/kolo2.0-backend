@@ -14,7 +14,15 @@ export default class CreateNewCustomerRequestValidator {
         column: 'email',
       }),
     ]),
-
+    username: schema.string([
+      rules.trim(),
+      rules.escape(),
+      rules.unique({
+        table: 'user_profiles',
+        column: 'username',
+      }),
+      rules.regex(/^[a-zA-Z0-9_.]+$/),
+    ]),
     password: schema.string([rules.trim(), rules.escape()]),
     mobile_number: schema.string([rules.trim(), rules.escape()]),
   })
@@ -31,5 +39,9 @@ export default class CreateNewCustomerRequestValidator {
     'password.string': 'Password provided must be a string',
     'mobile_number.required': 'Mobile number is compulsory',
     'mobile_number.string': 'Mobile number must be a string',
+    'username.required': 'Username is required',
+    'username.string': 'Username provided must be a string',
+    'username.unique': 'Username is unavailable. Please try a different username',
+    'username.regex': 'Username can only contain letters, numbers, underscores, and periods',
   }
 }

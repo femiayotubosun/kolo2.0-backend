@@ -1,0 +1,9 @@
+import UserRegistrationStepInterface from 'App/Project/Client/UserManagement/TypeChecking/UserRegistrationStep/UserRegistrationStepInterface'
+import CreateNewRecordGeneric from 'App/Common/TypeChecking/GeneralPurpose/CreateNewRecordGeneric'
+
+type CreateUserRegistrationStepRecordPayload = Pick<UserRegistrationStepInterface, 'userId'>
+
+type CreateUserRegistrationStepRecordOptions =
+  CreateNewRecordGeneric<CreateUserRegistrationStepRecordPayload>
+
+export default CreateUserRegistrationStepRecordOptions

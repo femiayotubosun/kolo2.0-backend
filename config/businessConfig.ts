@@ -8,6 +8,14 @@ const businessConfig = {
     tokenLength: Env.get('OTP_TOKEN_LENGTH'),
   },
 
+  userProfile: {
+    customerCodePrefix: Env.get('CUSTOMER_CODE_PREFIX'),
+
+    customerCodeLength: Env.get('CUSTOMER_CODE_LENGTH'),
+
+    referralCodeLength: Env.get('REFERRAL_CODE_LENGTH'),
+  },
+
   currentDateTime: () => DateTime.now(),
 }
 

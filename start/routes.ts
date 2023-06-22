@@ -1,1 +1,1 @@
-import 'App/Project/ProjectRoutes'
+import 'App/Project//ProjectRoutes'

@@ -24,6 +24,11 @@ export default Env.rules({
   DRIVE_DISK: Env.schema.enum(['local'] as const),
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
 
+  OTP_TOKEN_EXPIRES_IN_X_MINUTES: Env.schema.number(),
+  OTP_TOKEN_LENGTH: Env.schema.number(),
+  MAXIMUM_CONSECUTIVE_FAILED_LOGIN_ATTEMPTS: Env.schema.number(),
+
+  DB_CONNECTION: Env.schema.string(),
   PG_HOST: Env.schema.string({ format: 'host' }),
   PG_PORT: Env.schema.number(),
   PG_USER: Env.schema.string(),

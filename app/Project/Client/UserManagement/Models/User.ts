@@ -21,7 +21,7 @@ export default class User extends AbstractModel {
   }
 
   @column({ serializeAs: null })
-  public password: string
+  public password: string | null
 
   @column()
   public mobileNumber: string
@@ -78,7 +78,7 @@ export default class User extends AbstractModel {
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
-      user.password = await Hash.make(user.password)
+      user.password = await Hash.make(user.password!)
     }
   }
 }

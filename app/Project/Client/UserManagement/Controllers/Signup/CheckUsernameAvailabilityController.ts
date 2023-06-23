@@ -1,8 +1,15 @@
 import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { ERROR, SUCCESS, SOMETHING_WENT_WRONG } from 'App/Common/Helpers/Messages/SystemMessages'
+import {
+  ERROR,
+  SUCCESS,
+  VALIDATION_ERROR,
+  SOMETHING_WENT_WRONG,
+  GOOD_USERNAME_CHOICE,
+} from 'App/Common/Helpers/Messages/SystemMessages'
+import CheckUsernameAvailabilityRequestValidator from 'App/Project/Client/UserManagement/Validators/Signup/CheckUsernameAvailabilityRequestValidator'
 
-export default class {{ filename }} {
+export default class CheckUsernameAvailabilityController {
   /*
   |--------------------------------------------------------------------------------
   | Status Codes
@@ -11,6 +18,7 @@ export default class {{ filename }} {
   */
   private ok = HttpStatusCodeEnum.OK
   private internalServerError = HttpStatusCodeEnum.INTERNAL_SERVER_ERROR
+  private unprocessableEntity = HttpStatusCodeEnum.UNPROCESSABLE_ENTITY
 
   /*
   |--------------------------------------------------------------------------------
@@ -25,18 +33,28 @@ export default class {{ filename }} {
   |--------------------------------------------------------------------------------
   |
   */
-  public async handle({ response }: HttpContextContract) {
+  public async handle({ request, response }: HttpContextContract) {
     try {
+      try {
+        await request.validate(CheckUsernameAvailabilityRequestValidator)
+      } catch (ValidationError) {
+        return response.status(this.unprocessableEntity).send({
+          status_code: this.unprocessableEntity,
+          status: ERROR,
+          message: VALIDATION_ERROR,
+          results: ValidationError.messages,
+        })
+      }
 
       return response.status(this.ok).send({
         status_code: this.ok,
         status: SUCCESS,
-        message: '',
+        message: GOOD_USERNAME_CHOICE,
       })
-    } catch ({{ filename }}Error) {
+    } catch (CheckUsernameAvailabilityControllerError) {
       console.log(
-        '🚀 ~ {{ filename }}Error.handle {{ filename }}Error ->',
-        {{ filename }}Error
+        '🚀 ~ CheckUsernameAvailabilityControllerError.handle CheckUsernameAvailabilityControllerError ->',
+        CheckUsernameAvailabilityControllerError
       )
 
       return response.status(this.internalServerError).send({

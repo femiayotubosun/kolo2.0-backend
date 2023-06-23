@@ -38,12 +38,17 @@ jobs:
           envkey_SESSION_DRIVER: ${{ vars.SESSION_DRIVER }}
           envkey_CACHE_VIEWS: ${{ vars.CACHE_VIEWS }}
 
+          envkey_OTP_TOKEN_EXPIRES_IN_X_MINUTES: ${{ vars.OTP_TOKEN_EXPIRES_IN_X_MINUTES }}
+          envykey_OTP_TOKEN_LENGTH: ${{ vars.OTP_TOKEN_LENGTH }}
+          envkey_MAXIMUM_CONSECUTIVE_FAILED_LOGIN_ATTEMPTS: ${{ vars.MAXIMUM_CONSECUTIVE_FAILED_LOGIN_ATTEMPTS }}
+
           envkey_DB_CONNECTION: ${{ vars.DB_CONNECTION }}
           envkey_PG_HOST: ${{ vars.PG_HOST }}
           envkey_PG_PORT: ${{ vars.PG_PORT }}
           envkey_PG_USER: ${{ vars.PG_USER }}
           envkey_PG_PASSWORD: ${{ vars.PG_PASSWORD }}
           envkey_PG_DB_NAME: ${{ vars.PG_DB_NAME }}
+
           file_name: '.env'
 
       - name: Use Node.js ${{ matrix.node-version }}

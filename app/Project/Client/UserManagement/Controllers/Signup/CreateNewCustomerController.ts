@@ -49,7 +49,7 @@ export default class CreateNewCustomerController {
       try {
         await request.validate(CreateNewCustomerRequestValidator)
       } catch (ValidationError) {
-        await dbTransaction.commit()
+        await dbTransaction.rollback()
         return response.status(this.unprocessableEntity).send({
           status_code: this.unprocessableEntity,
           status: ERROR,

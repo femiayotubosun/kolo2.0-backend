@@ -1,0 +1,12 @@
+import UpdateRecordGeneric from 'App/Common/TypeChecking/GeneralPurpose/UpdateRecordGeneric'
+import UserRegistrationStepIdentifierOptions from 'App/Project/Client/UserManagement/TypeChecking/UserRegistrationStep/UserRegistrationStepIdentifierOptions'
+import UserRegistrationStepInterface from 'App/Project/Client/UserManagement/TypeChecking/UserRegistrationStep/UserRegistrationStepInterface'
+
+type UpdateUserRegistrationStepRecordPayload = Partial<UserRegistrationStepInterface>
+
+type UpdateUserRegistrationStepRecordOptions = UpdateRecordGeneric<
+  UserRegistrationStepIdentifierOptions,
+  UpdateUserRegistrationStepRecordPayload
+>
+
+export default UpdateUserRegistrationStepRecordOptions

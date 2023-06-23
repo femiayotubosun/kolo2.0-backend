@@ -5,47 +5,47 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: ['dev']
   pull_request:
-    branches: [ "dev" ]
-
-
-
-
+    branches: ['dev']
 
 jobs:
-
-
   build:
-
     runs-on: ubuntu-latest
-    environment: 'development'
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    env:
+      PORT: ${{ vars.PORT }}
+      HOST: ${{ vars.HOST }}
+      NODE_ENV: ${{ vars.NODE_ENV }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      DRIVE_DISK: ${{ vars.DRIVE_DISK }}
+      SESSION_DRIVER: ${{ vars.SESSION_DRIVER }}
+      CACHE_VIEWS: ${{ vars.CACHE_VIEWS }}
+
+      OTP_TOKEN_EXPIRES_IN_X_MINUTES: ${{ vars.OTP_TOKEN_EXPIRES_IN_X_MINUTES }}
+      OTP_TOKEN_LENGTH: ${{ vars.OTP_TOKEN_LENGTH }}
+      MAXIMUM_CONSECUTIVE_FAILED_LOGIN_ATTEMPTS: ${{ vars.MAXIMUM_CONSECUTIVE_FAILED_LOGIN_ATTEMPTS }}
+      CUSTOMER_CODE_PREFIX: ${{ vars.CUSTOMER_CODE_PREFIX }}
+      CUSTOMER_CODE_LENGTH: ${{ vars.CUSTOMER_CODE_LENGTH }}
+      REFERRAL_CODE_LENGTH: ${{ vars.REFERRAL_CODE_LENGTH }}
+
+      DB_CONNECTION: ${{ vars.DB_CONNECTION }}
+      PG_HOST: ${{ vars.PG_HOST }}
+      PG_PORT: ${{ vars.PG_PORT }}
+      PG_USER: ${{ secrets.PG_USER }}
+      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      PG_DB_NAME: ${{ vars.PG_DB_NAME }}
+
+      SMTP_HOST: ${{ vars.SMTP_HOST }}
+      SMTP_PORT: ${{ vars.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
-      - name: Create and Populate .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_PORT: ${{ vars.PORT }}
-          envkey_HOST: ${{ vars.HOST }}
-          envkey_NODE_ENV: ${{ vars.NODE_ENV }}
-          envkey_APP_KEY: ${{ secrets.APP_KEY }}
-          envkey_DRIVE_DISK: ${{ vars.DRIVE_DISK }}
-          envkey_SESSION_DRIVER: ${{ vars.SESSION_DRIVER }}
-          envkey_CACHE_VIEWS: ${{ vars.CACHE_VIEWS }}
-
-          envkey_DB_CONNECTION: ${{ vars.DB_CONNECTION }}
-          envkey_PG_HOST: ${{ vars.PG_HOST }}
-          envkey_PG_PORT: ${{ vars.PG_PORT }}
-          envkey_PG_USER: ${{ vars.PG_USER }}
-          envkey_PG_PASSWORD: ${{ vars.PG_PASSWORD }}
-          envkey_PG_DB_NAME: ${{ vars.PG_DB_NAME }}
-          file_name: '.env'
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:

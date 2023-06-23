@@ -40,9 +40,7 @@ export default class {{ filename }} {
    * @memberof {{ filename }}
    */
   private static async get{{ modelName }}RecordById({{ modelVariableName }}Id: number) {
-    const {{ modelVariableName }} = await {{ modelName }}.query().where('id', {{ modelVariableName }}Id).first()
-
-    return {{ modelVariableName }} || this.{{ modelNameInCaps }}_RECORD_NOT_FOUND
+    return {{ modelName }}.query().where('id', {{ modelVariableName }}Id).first()
   }
 
   /**
@@ -54,9 +52,7 @@ export default class {{ filename }} {
    * @memberof {{ filename }}
    */
   private static async get{{ modelName }}RecordByIdentifier(identifier: string) {
-    const {{ modelVariableName }} = await {{modelName}}.query().where('identifier', identifier).first()
-
-    return {{ modelVariableName }} || this.{{ modelNameInCaps }}_RECORD_NOT_FOUND
+    return {{modelName}}.query().where('identifier', identifier).first()
   }
 
   /**
@@ -72,7 +68,7 @@ export default class {{ filename }} {
   ): Promise<{{ modelName }} | null> {
     const { identifier, identifierType } = get{{ modelName }}Options
 
-    const Get{{ modelName }}: Record<string, Function> = {
+    const Get{{ modelName }}: Record<string, () => Promise<{{ modelName }} | null>> = {
       id: async () => await this.get{{ modelName }}RecordById(Number(identifier)),
 
       identifier: async () => await this.get{{ modelName }}RecordByIdentifier(String(identifier)),
@@ -94,7 +90,7 @@ export default class {{ filename }} {
 
     const {{ modelVariableName }} = await this.get{{ modelName }}Record(identifierOptions)
 
-    if ({{ modelVariableName }} === this.{{ modelNameInCaps }}_RECORD_NOT_FOUND) return
+    if ({{ modelVariableName }} === this.{{ modelNameInCaps }}_RECORD_NOT_FOUND) return this.{{ modelNameInCaps }}_RECORD_NOT_FOUND
 
     Object.assign({{ modelVariableName }}, updatePayload)
 
@@ -102,6 +98,6 @@ export default class {{ filename }} {
       {{ modelVariableName }}.useTransaction(dbTransactionOptions.dbTransaction)
     }
 
-    return await {{ modelVariableName }}.save()
+    return {{ modelVariableName }}.save()
   }
 }

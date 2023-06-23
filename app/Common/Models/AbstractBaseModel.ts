@@ -6,6 +6,9 @@ import searchFilterParams from 'App/Common/Helpers/GeneralPurpose/searchFilterPa
 import QueryFilterParamsInterface from 'App/Common/TypeChecking/GeneralPurpose/QueryFilterParamsInterface'
 
 export default class AbstractModel extends BaseModel {
+  @column({ isPrimary: true })
+  public id: number
+
   @column()
   public identifier: string
 
@@ -55,7 +58,7 @@ export default class AbstractModel extends BaseModel {
     if (queryFilter.orderBy) {
       query.orderBy(queryFilter.orderBy, queryFilter.sortBy)
     }
-    if (queryFilter.page && queryFilter.page !== null) {
+    if (queryFilter.page) {
       query.paginate(queryFilter.page, queryFilter.perPage)
     }
   })
@@ -64,8 +67,6 @@ export default class AbstractModel extends BaseModel {
     const searchFilter = searchFilterParams(searchParam)
     if (searchFilter.searchKey) {
       query.whereRaw(`${searchFilter.searchKey} LIKE '%${searchFilter.searchValue}%' `)
-      // TODO Handle multiple search params
-      // query.whereILike(searchFilter.searchKey, `'%${searchFilter.searchValue}%' `)
     }
   })
 }

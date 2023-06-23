@@ -5,11 +5,11 @@
 |
 |Import this file inside `start/routes.ts` as follows
 |
-| import 'App/Systems/{{ systemName }}/Routes/index'
+| import 'App/Project/{{ systemName }}/Routes/index'
 |
 */
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {})
   .prefix('')
-  .namespace('App/Systems/{{ systemName }}/Controllers')
+  .namespace('App/Project/{{ systemName }}/Controllers')

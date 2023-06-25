@@ -20,7 +20,7 @@ export default cacheConfig({
     |
     */
     redis: {
-      driver: 'redis'
+      driver: 'redis',
     },
   },
 
@@ -30,7 +30,7 @@ export default cacheConfig({
   |--------------------------------------------------------------------------
   |
   | TTL is expressed in seconds.
-  | 
+  |
   */
   ttl: 60,
 
@@ -40,12 +40,12 @@ export default cacheConfig({
   |--------------------------------------------------------------------------
   |
   | Enable/disable cache events.
-  | 
+  |
   */
   events: {
     'cache:hit': true,
     'cache:missed': true,
     'cache:key_written': true,
-    'cache:key_forgotten': true
-  }
+    'cache:key_forgotten': true,
+  },
 })

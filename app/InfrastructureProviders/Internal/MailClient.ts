@@ -37,7 +37,7 @@ class MailClient {
       emailPayload,
     } = emailOptions
 
-    if (sendLater === false) {
+    if (!sendLater) {
       await Mail.send((message) => {
         message.from(senderEmail, senderName)
         message.to(recipientEmail, recipientName)

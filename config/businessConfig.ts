@@ -17,9 +17,9 @@ const businessConfig = {
   },
 
   email: {
-    senderName: '',
+    senderName: Env.get('DEFAULT_EMAIL_SENDER_NAME'),
 
-    senderAddress: '',
+    senderAddress: Env.get('DEFAULT_EMAIL_SENDER_ADDRESS'),
   },
 
   currentDateTime: () => DateTime.now(),

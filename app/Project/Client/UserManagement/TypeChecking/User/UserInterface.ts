@@ -21,6 +21,8 @@ export default interface UserInterface {
 
   isFirstTimeLogin: boolean | string
 
+  hasVerifiedEmail: boolean | string
+
   loginAttempts: number
 
   isActive: boolean | string

@@ -6,7 +6,8 @@
     "@adonisjs/repl/build/commands",
     "@adonisjs/lucid/build/commands",
     "@adonisjs/mail/build/commands",
-    "@melchyore/adonis-cache/build/commands"
+    "@melchyore/adonis-cache/build/commands",
+    "@setten/bull-queue/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -17,7 +18,8 @@
   },
   "preloads": [
     "./start/routes",
-    "./start/kernel"
+    "./start/kernel",
+    "./start/views"
   ],
   "providers": [
     "./providers/AppProvider",
@@ -29,7 +31,8 @@
     "@adonisjs/auth",
     "@adonisjs/mail",
     "@adonisjs/redis",
-    "@melchyore/adonis-cache"
+    "@melchyore/adonis-cache",
+    "@setten/bull-queue"
   ],
   "metaFiles": [
     {
@@ -38,6 +41,10 @@
     },
     {
       "pattern": "resources/views/**/*.edge",
+      "reloadServer": false
+    },
+    {
+      "pattern": "app/Project/**/**/Views/**",
       "reloadServer": false
     }
   ],

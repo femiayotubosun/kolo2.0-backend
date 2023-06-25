@@ -36,7 +36,8 @@
       "@adonisjs/auth",
       "@adonisjs/mail",
       "@adonisjs/redis",
-      "@melchyore/adonis-cache"
+      "@melchyore/adonis-cache",
+      "@setten/bull-queue"
     ]
   }
 }

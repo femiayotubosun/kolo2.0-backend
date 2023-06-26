@@ -53,7 +53,7 @@ jobs:
       REDIS_HOST: 127.0.0.1,
       REDIS_PORT: 6379,
 
-      QUEUE_REDIS_HOST: local
+      QUEUE_REDIS_HOST: localhost,
       QUEUE_REDIS_PORT: 6379,
 
     steps:

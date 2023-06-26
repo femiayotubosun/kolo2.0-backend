@@ -34,7 +34,10 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/lucid",
       "@adonisjs/auth",
-      "@adonisjs/mail"
+      "@adonisjs/mail",
+      "@adonisjs/redis",
+      "@melchyore/adonis-cache",
+      "@setten/bull-queue"
     ]
   }
 }

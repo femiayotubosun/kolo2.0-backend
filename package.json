@@ -9,7 +9,8 @@
     "test": "node ace test",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "prepare": "husky intall .husky"
+    "prepare": "husky install",
+    "cmma:update": "node ace cmma:config-update"
   },
   "eslintConfig": {
     "extends": [
@@ -45,8 +46,10 @@
     "@japa/preset-adonis": "^1.2.0",
     "@japa/runner": "^2.5.1",
     "@symfony/webpack-encore": "^4.1.1",
+    "@types/base-64": "^1.0.0",
     "@types/proxy-addr": "^2.0.0",
     "@types/source-map-support": "^0.5.6",
+    "@types/utf8": "^3.0.1",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
@@ -66,15 +69,21 @@
     "@adonisjs/core": "^5.9.0",
     "@adonisjs/lucid": "^18.4.0",
     "@adonisjs/mail": "^8.2.0",
+    "@adonisjs/redis": "^7.3.2",
     "@adonisjs/repl": "^3.1.11",
     "@adonisjs/session": "^6.4.0",
     "@adonisjs/shield": "^7.1.1",
     "@adonisjs/view": "^6.2.0",
+    "@melchyore/adonis-cache": "^1.0.6",
+    "@setten/bull-queue": "^1.0.1",
+    "axios": "^1.4.0",
+    "base-64": "^1.0.0",
     "luxon": "^3.3.0",
     "pg": "^8.11.0",
     "proxy-addr": "^2.0.7",
     "randomstring": "^1.3.0",
     "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "utf8": "^3.0.0"
   }
 }

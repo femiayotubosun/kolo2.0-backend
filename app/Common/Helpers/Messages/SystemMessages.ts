@@ -375,13 +375,13 @@ export const SEND_EMAIL_FAILED = 'Something went wrong while sending mail'
 
 // Edge Templates Definitions
 export const EMAIL_OTP_ACCOUNT_ACTIVATION_EMAIL_TEMPLATE =
-  'client:customerManagement::emails/user/new-user-account-activation-otp'
+  'client:userManagement::emails/user/new-user-account-activation-otp'
 export const RESEND_OTP_ACCOUNT_ACTIVATION_EMAIL_TEMPLATE =
-  'client:customerManagement::emails/user/resend-user-account-activation-otp'
+  'client:userManagement::emails/user/resend-user-account-activation-otp'
 export const PASSWORD_RESET_OTP_EMAIL_TEMPLATE =
-  'client:customerManagement::emails/user/reset-password-otp'
+  'client:userManagement::emails/user/reset-password-otp'
 export const CHANGE_PASSWORD_OTP_EMAIL_TEMPLATE =
-  'client:customerManagement::emails/user/change-password-otp'
+  'client:userManagement::emails/user/change-password-otp'
 export const NEW_ADMIN_WELCOME_EMAIL_TEMPLATE =
   'admin:adminManagement::emails/admin/new-admin-welcome'
 // Email

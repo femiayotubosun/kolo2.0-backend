@@ -2,13 +2,13 @@ import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
   ERROR,
-  SUCCESS,
-  VALIDATION_ERROR,
-  SOMETHING_WENT_WRONG,
-  SIGN_UP_SUCCESSFUL,
-  NULL_OBJECT,
-  USER_CREATION_ERROR,
   NO_INFORMATION,
+  NULL_OBJECT,
+  SIGN_UP_SUCCESSFUL,
+  SOMETHING_WENT_WRONG,
+  SUCCESS,
+  USER_CREATION_ERROR,
+  VALIDATION_ERROR,
 } from 'App/Common/Helpers/Messages/SystemMessages'
 import CreateNewCustomerRequestValidator from 'App/Project/Client/UserManagement/Validators/Signup/CreateNewCustomerRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
@@ -17,6 +17,7 @@ import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
 import UserProfileActions from 'App/Project/Client/UserManagement/Actions/UserProfileActions'
 import UserRegistrationStepActions from 'App/Project/Client/UserManagement/Actions/UserRegistrationStepActions'
 import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenActions'
+import { Queue } from '@ioc:Setten/Queue'
 
 export default class CreateNewCustomerController {
   /*
@@ -159,6 +160,13 @@ export default class CreateNewCustomerController {
         },
         created_at: newUserRecord.createdAt,
       }
+
+      await Queue.dispatch('App/Project/Client/UserManagement/Jobs/SendEmailOtpTokenConsumer', {
+        email: newUserRecord.email,
+        fullName: newUserRecord.fullName,
+        firstName: newUserRecord.firstName,
+        token,
+      })
 
       return response.status(this.created).send({
         status_code: this.created,

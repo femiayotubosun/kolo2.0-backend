@@ -1311,6 +1311,133 @@
       ],
       "aliases": [],
       "flags": []
+    },
+    "cache:clear": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@melchyore/adonis-cache/build/commands/Clear",
+      "commandName": "cache:clear",
+      "description": "Flush the application cache",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "store",
+          "name": "store",
+          "required": false,
+          "description": "The name of the store you would like to clear"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "cache:forget": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@melchyore/adonis-cache/build/commands/Forget",
+      "commandName": "cache:forget",
+      "description": "Remove a cached value by its key",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "key",
+          "name": "key",
+          "required": true,
+          "description": "The key to remove"
+        },
+        {
+          "type": "string",
+          "propertyName": "store",
+          "name": "store",
+          "required": false,
+          "description": "The store to remove the key from"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "cache:dynamodb": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": true
+      },
+      "commandPath": "@melchyore/adonis-cache/build/commands/DynamoDB",
+      "commandName": "cache:dynamodb",
+      "description": "Create a Cache DynamoDB table on AWS",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "tableName",
+          "name": "tableName",
+          "required": false,
+          "description": "Table name"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "cache:table": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@melchyore/adonis-cache/build/commands/Table",
+      "commandName": "cache:table",
+      "description": "Create a migration for the cache database table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "cacheTableName",
+          "name": "cacheTableName",
+          "required": false,
+          "description": "Table name"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "queue:listen": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": true
+      },
+      "commandPath": "@setten/bull-queue/build/commands/QueueListener",
+      "commandName": "queue:listen",
+      "description": "Listen to one or multiple queues",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "queue",
+          "propertyName": "queue",
+          "type": "array",
+          "alias": "q",
+          "description": "The queue(s) to listen on"
+        }
+      ]
+    },
+    "make:job": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@setten/bull-queue/build/commands/MakeJob",
+      "commandName": "make:job",
+      "description": "Make a new dispatch-able job",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "name",
+          "name": "name",
+          "required": true,
+          "description": "Name of the job class"
+        }
+      ],
+      "aliases": [],
+      "flags": []
     }
   },
   "aliases": {}

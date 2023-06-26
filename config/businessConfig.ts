@@ -16,7 +16,15 @@ const businessConfig = {
     referralCodeLength: Env.get('REFERRAL_CODE_LENGTH'),
   },
 
+  email: {
+    senderName: Env.get('DEFAULT_EMAIL_SENDER_NAME'),
+
+    senderAddress: Env.get('DEFAULT_EMAIL_SENDER_ADDRESS'),
+  },
+
   currentDateTime: () => DateTime.now(),
+
+  customEncryptionKey: Env.get('CUSTOM_ENCRYPTION_KEY'),
 }
 
 export default businessConfig

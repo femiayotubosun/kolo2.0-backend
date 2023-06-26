@@ -1,1 +1,2 @@
 import './SignupRoutes'
+import './AccountVerificationRoutes'

@@ -23,6 +23,7 @@ export default Env.rules({
   SESSION_DRIVER: Env.schema.string(),
   DRIVE_DISK: Env.schema.enum(['local'] as const),
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
+  CUSTOM_ENCRYPTION_KEY: Env.schema.string(),
 
   OTP_TOKEN_EXPIRES_IN_X_MINUTES: Env.schema.number(),
   OTP_TOKEN_LENGTH: Env.schema.number(),
@@ -30,6 +31,10 @@ export default Env.rules({
   CUSTOMER_CODE_PREFIX: Env.schema.string(),
   CUSTOMER_CODE_LENGTH: Env.schema.number(),
   REFERRAL_CODE_LENGTH: Env.schema.number(),
+  BUSINESS_NAME: Env.schema.string(),
+  ACCOUNTS_CANCELLATION_EMAIL: Env.schema.string(),
+  DEFAULT_EMAIL_SENDER_NAME: Env.schema.string(),
+  DEFAULT_EMAIL_SENDER_ADDRESS: Env.schema.string(),
 
   DB_CONNECTION: Env.schema.string(),
   PG_HOST: Env.schema.string({ format: 'host' }),
@@ -43,4 +48,10 @@ export default Env.rules({
   SMTP_USERNAME: Env.schema.string(),
   SMTP_PASSWORD: Env.schema.string(),
 
+  REDIS_CONNECTION: Env.schema.enum(['local'] as const),
+  REDIS_HOST: Env.schema.string(),
+  REDIS_PORT: Env.schema.string(),
+
+  QUEUE_REDIS_HOST: Env.schema.string(),
+  QUEUE_REDIS_PORT: Env.schema.number(),
 })

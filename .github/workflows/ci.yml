@@ -49,12 +49,12 @@ jobs:
       SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
 
-      REDIS_CONNECTION: local,
-      REDIS_HOST: 127.0.0.1,
-      REDIS_PORT: 6379,
+      REDIS_CONNECTION: local
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
 
-      QUEUE_REDIS_HOST: localhost,
-      QUEUE_REDIS_PORT: 6379,
+      QUEUE_REDIS_HOST: localhost
+      QUEUE_REDIS_PORT: 6379
 
     steps:
       - uses: actions/checkout@v3

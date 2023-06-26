@@ -24,7 +24,7 @@ jobs:
       DRIVE_DISK: ${{ vars.DRIVE_DISK }}
       SESSION_DRIVER: ${{ vars.SESSION_DRIVER }}
       CACHE_VIEWS: ${{ vars.CACHE_VIEWS }}
-      CUSTOM_ENCRYPTION_KEY: ${{ vars.CUSTOM_ENCRYPTION_KEY }}
+      CUSTOM_ENCRYPTION_KEY: ${{ secrets.CUSTOM_ENCRYPTION_KEY }}
 
       OTP_TOKEN_EXPIRES_IN_X_MINUTES: ${{ vars.OTP_TOKEN_EXPIRES_IN_X_MINUTES }}
       OTP_TOKEN_LENGTH: ${{ vars.OTP_TOKEN_LENGTH }}
@@ -32,6 +32,10 @@ jobs:
       CUSTOMER_CODE_PREFIX: ${{ vars.CUSTOMER_CODE_PREFIX }}
       CUSTOMER_CODE_LENGTH: ${{ vars.CUSTOMER_CODE_LENGTH }}
       REFERRAL_CODE_LENGTH: ${{ vars.REFERRAL_CODE_LENGTH }}
+      BUSINESS_NAME: "Kolo"
+      ACCOUNTS_CANCELLATION_EMAIL: "accounts@kolo.com"
+      DEFAULT_EMAIL_SENDER_NAME: "Kolo"
+      DEFAULT_EMAIL_SENDER_ADDRESS: "tech@kolo.com"
 
       DB_CONNECTION: ${{ vars.DB_CONNECTION }}
       PG_HOST: ${{ vars.PG_HOST }}
@@ -44,6 +48,13 @@ jobs:
       SMTP_PORT: ${{ vars.SMTP_PORT }}
       SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+
+      REDIS_CONNECTION: local,
+      REDIS_HOST: 127.0.0.1,
+      REDIS_PORT: 6379,
+
+      QUEUE_REDIS_HOST: local
+      QUEUE_REDIS_PORT: 6379,
 
     steps:
       - uses: actions/checkout@v3

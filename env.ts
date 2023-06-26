@@ -48,7 +48,7 @@ export default Env.rules({
   SMTP_USERNAME: Env.schema.string(),
   SMTP_PASSWORD: Env.schema.string(),
 
-  REDIS_CONNECTION: Env.schema.enum(['local']),
+  REDIS_CONNECTION: Env.schema.enum(['local'] as const),
   REDIS_HOST: Env.schema.string(),
   REDIS_PORT: Env.schema.string(),
 

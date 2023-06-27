@@ -4,6 +4,8 @@ import businessConfig from 'Config/businessConfig'
 import {
   FAILURE_MESSAGE_PREFIX,
   FAILURE_REASON_PREFIX,
+  SINGLE_USE_LOGIN_EMAIL_TEMPLATE,
+  SINGLE_USE_LOGIN_TOKEN_SUBJECT,
 } from 'App/Common/Helpers/Messages/SystemMessages'
 
 /*
@@ -61,6 +63,33 @@ class MailClient {
 
       console.log('Delivery Status =>', 'Email Sent')
       console.log('SMTP Response => ', result!.response)
+    })
+  }
+
+  /**
+   * @description Send a Login OTP Email
+   * @author FATE
+   * @param {} sendLoginOtpEmailOptions
+   * @static
+   * @memberof sendLoginOtpEmail
+   */
+  public static async sendLoginOtpEmail(sendLoginOtpEmailOptions: {
+    userEmail: string
+    loginOtpToken: string
+    userFullName: string
+    userFirstName: string
+  }) {
+    const { userEmail, userFirstName, userFullName, loginOtpToken } = sendLoginOtpEmailOptions
+
+    await this.sendMail({
+      recipientEmail: userEmail,
+      recipientName: userFullName,
+      emailSubject: SINGLE_USE_LOGIN_TOKEN_SUBJECT,
+      emailTemplate: SINGLE_USE_LOGIN_EMAIL_TEMPLATE,
+      emailPayload: {
+        token: loginOtpToken,
+        recipientFirstName: userFirstName,
+      },
     })
   }
 }

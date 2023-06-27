@@ -11,6 +11,8 @@ export default interface UserInterface {
 
   lastName: string
 
+  accountType?: 'server' | 'google'
+
   password?: string | null
 
   mobileNumber: string

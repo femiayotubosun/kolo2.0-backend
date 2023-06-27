@@ -20,6 +20,9 @@ export default class User extends AbstractModel {
     return `${this.firstName} ${this.lastName}`
   }
 
+  @column()
+  public accountType: 'server' | 'google'
+
   @column({ serializeAs: null })
   public password: string | null
 

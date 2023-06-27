@@ -2,6 +2,7 @@ import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
   ERROR,
+  SENT_EMAIL_OTP_CHECK_EMAIL,
   SOMETHING_WENT_WRONG,
   SUCCESS,
   VALIDATION_ERROR,
@@ -13,7 +14,7 @@ import businessConfig from 'Config/businessConfig'
 import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
 import MailClient from 'App/InfrastructureProviders/Internal/MailClient'
 
-export default class RequestSingleUseAuthenticationCodeController {
+export default class RequestSingleUseAuthenticationTokenController {
   /*
   |--------------------------------------------------------------------------------
   | Status Codes
@@ -92,7 +93,7 @@ export default class RequestSingleUseAuthenticationCodeController {
       return response.status(this.ok).send({
         status_code: this.ok,
         status: SUCCESS,
-        message: '',
+        message: SENT_EMAIL_OTP_CHECK_EMAIL,
       })
     } catch (RequestSingleUseAuthenticationCodeControllerError) {
       console.log(

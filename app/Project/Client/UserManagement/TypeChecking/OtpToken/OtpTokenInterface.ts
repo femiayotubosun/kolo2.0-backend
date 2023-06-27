@@ -5,7 +5,7 @@ export default interface OtpTokenInterface {
 
   identifier: string
 
-  tokenType: 'email-verification' | 'change-password' | 'reset-password'
+  tokenType: 'email-verification' | 'change-password' | 'reset-password' | 'login'
 
   token: string
 

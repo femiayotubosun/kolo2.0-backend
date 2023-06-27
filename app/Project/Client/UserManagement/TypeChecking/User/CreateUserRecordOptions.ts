@@ -3,7 +3,7 @@ import CreateNewRecordGeneric from 'App/Common/TypeChecking/GeneralPurpose/Creat
 
 type CreateUserRecordPayload = Pick<
   UserInterface,
-  'email' | 'firstName' | 'lastName' | 'password' | 'mobileNumber' | 'lastLoginDate'
+  'email' | 'firstName' | 'lastName' | 'password' | 'mobileNumber' | 'lastLoginDate' | 'accountType'
 >
 
 type CreateUserRecordOptions = CreateNewRecordGeneric<CreateUserRecordPayload>

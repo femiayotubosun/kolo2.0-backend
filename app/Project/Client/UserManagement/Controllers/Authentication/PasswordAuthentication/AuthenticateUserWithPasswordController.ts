@@ -9,7 +9,7 @@ import {
   AUTHENTICATION_SUCCESSFUL,
   NULL_OBJECT,
 } from 'App/Common/Helpers/Messages/SystemMessages'
-import AuthenticateUserWithPasswordRequestValidator from 'App/Project/Client/UserManagement/Validators/Authentication/AuthenticateUserWithPasswordRequestValidator'
+import AuthenticateUserWithPasswordRequestValidator from 'App/Project/Client/UserManagement/Validators/Authentication/PasswordAuthentication/AuthenticateUserWithPasswordRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Hash from '@ioc:Adonis/Core/Hash'
 import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
@@ -86,6 +86,7 @@ export default class AuthenticateUserWithPasswordController {
           message: INVALID_CREDENTIALS,
         })
       }
+
       await auth.use('api').revoke()
 
       const accessToken = await auth.use('api').attempt(email, password, {
@@ -107,6 +108,7 @@ export default class AuthenticateUserWithPasswordController {
           lastLoginDate: currentLoginDate,
         },
       })
+
       const mutatedUserPayload = {
         identifier: user!.identifier,
         first_name: user!.firstName,

@@ -4,3 +4,4 @@
 echo "Your branch has been updated!"
 npm cmma:update
 echo "CMMA Project Updated"
+echo 'project updated'

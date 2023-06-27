@@ -25,6 +25,8 @@ const businessConfig = {
   currentDateTime: () => DateTime.now(),
 
   customEncryptionKey: Env.get('CUSTOM_ENCRYPTION_KEY'),
+
+  accessTokenExpirationTimeFrame: Env.get('ACCESS_TOKEN_EXPIRATION_TIME_FRAME', 10),
 }
 
 export default businessConfig

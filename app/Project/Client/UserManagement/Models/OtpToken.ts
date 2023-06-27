@@ -5,7 +5,7 @@ import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenA
 
 export default class OtpToken extends AbstractModel {
   @column()
-  public tokenType: 'email-verification' | 'change-password' | 'reset-password'
+  public tokenType: 'email-verification' | 'change-password' | 'reset-password' | 'login'
 
   @column()
   public token: string

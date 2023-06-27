@@ -849,6 +849,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
       systemMap,
     })
 
+    if (!artifactsOnDisk || !artifactGroup) return
+
     const artifactsOnDiskButNotOnMap = differenceOfArrays(artifactsOnDisk, artifactGroup)
 
     if (artifactsOnDiskButNotOnMap.length) {

@@ -81,7 +81,7 @@ export const SENT_EMAIL_OTP = 'OTP was sent successfully, Please check your Mail
 export const FAILED_EMAIL_OTP = 'Failed to send OTP. Please try again'
 export const EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN =
   'OTP Token Has Expired. Please request a new Token'
-export const SENT_EMAIL_OTP_CHECK_EMAIL = 'OTP was sent successfully, Please check your Mail'
+export const SENT_EMAIL_OTP_CHECK_EMAIL = 'OTP was sent successfully. Please check your Mail'
 export const EMAIL_EXPIRED_OTP = 'OTP Token Has Expired. Please request a new Token'
 export const INVALID_EMAIL_OTP = 'Invalid OTP Token.'
 export const INFORMATION_VERIFIED = 'Information Successfully Verified'
@@ -368,6 +368,10 @@ export const HOME_CONTENT_FETCH_FAILED = 'Unable to fetch Media Content'
 export const ACCOUNT_ACTIVATION_REQUIRED_SUBJECT = 'Account Activation Required'
 export const NEW_SYSTEM_ADMIN_SUBJECT =
   'Welcome to Akiba - Your Administrator Account Details Inside!'
+export const SINGLE_USE_LOGIN_TOKEN_SUBJECT = 'Single Use Login Token'
+
+export const RESET_YOUR_PASSWORD = 'Reset Your Password'
+export const CHANGE_YOUR_PASSWORD = 'Change Your Password'
 
 // Email Client Response
 export const SEND_EMAIL_SUCCESSFUL = 'Email Sent Successfully'
@@ -384,9 +388,7 @@ export const CHANGE_PASSWORD_OTP_EMAIL_TEMPLATE =
   'client:userManagement::emails/user/change-password-otp'
 export const NEW_ADMIN_WELCOME_EMAIL_TEMPLATE =
   'admin:adminManagement::emails/admin/new-admin-welcome'
-// Email
-export const RESET_YOUR_PASSWORD = 'Reset Your Password'
-export const CHANGE_YOUR_PASSWORD = 'Change Your Password'
+export const SINGLE_USE_LOGIN_EMAIL_TEMPLATE = 'client:userManagement::emails/user/single-use-otp'
 
 // Change Password
 export const CHANGE_PASSWORD_SUCCESS = 'Change Password Successful'

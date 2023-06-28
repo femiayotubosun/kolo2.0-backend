@@ -4,6 +4,8 @@ import businessConfig from 'Config/businessConfig'
 import {
   FAILURE_MESSAGE_PREFIX,
   FAILURE_REASON_PREFIX,
+  PASSWORD_RESET_OTP_EMAIL_TEMPLATE,
+  RESET_YOUR_PASSWORD_SUBJECT,
   SINGLE_USE_LOGIN_EMAIL_TEMPLATE,
   SINGLE_USE_LOGIN_TOKEN_SUBJECT,
 } from 'App/Common/Helpers/Messages/SystemMessages'
@@ -86,6 +88,34 @@ class MailClient {
       recipientName: userFullName,
       emailSubject: SINGLE_USE_LOGIN_TOKEN_SUBJECT,
       emailTemplate: SINGLE_USE_LOGIN_EMAIL_TEMPLATE,
+      emailPayload: {
+        token: loginOtpToken,
+        recipientFirstName: userFirstName,
+      },
+    })
+  }
+
+  /**
+   * @description Send a Password Reset OTP Email
+   * @author FATE
+   * @param {} sendPasswordResetOtpEmailOptions
+   * @static
+   * @memberof sendPasswordResetOtpEmail
+   */
+  public static async sendPasswordResetOtpEmail(sendPasswordResetOtpEmailOptions: {
+    userEmail: string
+    loginOtpToken: string
+    userFullName: string
+    userFirstName: string
+  }) {
+    const { userEmail, userFirstName, userFullName, loginOtpToken } =
+      sendPasswordResetOtpEmailOptions
+
+    await this.sendMail({
+      recipientEmail: userEmail,
+      recipientName: userFullName,
+      emailSubject: RESET_YOUR_PASSWORD_SUBJECT,
+      emailTemplate: PASSWORD_RESET_OTP_EMAIL_TEMPLATE,
       emailPayload: {
         token: loginOtpToken,
         recipientFirstName: userFirstName,

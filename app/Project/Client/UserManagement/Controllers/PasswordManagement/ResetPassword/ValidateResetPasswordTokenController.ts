@@ -1,23 +1,23 @@
 import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
+  AUTHENTICATION_SUCCESSFUL,
+  EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
   ERROR,
+  INVALID_TOKEN,
+  NULL_OBJECT,
+  SOMETHING_WENT_WRONG,
   SUCCESS,
   VALIDATION_ERROR,
-  SOMETHING_WENT_WRONG,
-  INFORMATION_ALREADY_VERIFIED,
-  INVALID_EMAIL_OTP,
-  NULL_OBJECT,
-  EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
-  INFORMATION_VERIFIED,
 } from 'App/Common/Helpers/Messages/SystemMessages'
-import VerifyEmailRequestValidator from 'App/Project/Client/UserManagement/Validators/AccountVerification/VerifyEmailRequestValidator'
+import ValidateResetPasswordTokenRequestValidator from 'App/Project/Client/UserManagement/Validators/PasswordManagement/ResetPassword/ValidateResetPasswordTokenRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
+import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
 import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenActions'
 import hasFutureDateTimeElapsed from 'App/Common/Helpers/DateManagement/hasFutureDateTimeElapsed'
-import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
+import businessConfig from 'Config/businessConfig'
 
-export default class VerifyEmailController {
+export default class ValidateResetPasswordTokenController {
   /*
   |--------------------------------------------------------------------------------
   | Status Codes
@@ -47,7 +47,7 @@ export default class VerifyEmailController {
 
     try {
       try {
-        await request.validate(VerifyEmailRequestValidator)
+        await request.validate(ValidateResetPasswordTokenRequestValidator)
       } catch (ValidationError) {
         await dbTransaction.rollback()
         return response.status(this.unprocessableEntity).send({
@@ -59,52 +59,42 @@ export default class VerifyEmailController {
       }
 
       const { otpToken } = request.body()
-      const user = auth.user
-      const userId = user!.id
 
-      const HAS_VERIFIED_EMAIL = 'Yes'
-
-      if (user!.hasVerifiedEmail === HAS_VERIFIED_EMAIL) {
-        await dbTransaction.rollback()
-        return response.status(this.ok).send({
-          status: SUCCESS,
-          status_code: this.ok,
-          message: INFORMATION_ALREADY_VERIFIED,
-        })
-      }
-
-      const existingOtpToken = await OtpTokenActions.getActiveOtpToken({
-        email: user!.email,
-        tokenType: 'email-verification',
+      const activeResetPasswordToken = await OtpTokenActions.getOtpTokenRecord({
+        identifier: otpToken,
+        identifierType: 'token',
       })
 
-      if (existingOtpToken === NULL_OBJECT) {
+      if (activeResetPasswordToken === NULL_OBJECT) {
         await dbTransaction.rollback()
+
         return response.status(this.badRequest).send({
           status_code: this.badRequest,
-          status: ERROR,
-          message: INVALID_EMAIL_OTP,
+          status: SUCCESS,
+          message: INVALID_TOKEN,
         })
       }
 
-      if (existingOtpToken.token !== otpToken) {
+      if (activeResetPasswordToken.token !== otpToken) {
         await dbTransaction.rollback()
+
         return response.status(this.badRequest).send({
           status: ERROR,
           status_code: this.badRequest,
-          message: INVALID_EMAIL_OTP,
+          message: INVALID_TOKEN,
         })
       }
 
       const OTP_TOKEN_HAS_EXPIRED = true
 
       const hasOtpTokenExpired = hasFutureDateTimeElapsed({
-        futureDateTime: existingOtpToken.expiresAt,
+        futureDateTime: activeResetPasswordToken.expiresAt,
       })
 
       if (hasOtpTokenExpired === OTP_TOKEN_HAS_EXPIRED) {
         await dbTransaction.rollback()
-        await OtpTokenActions.revokeExistingOtpToken(existingOtpToken.id)
+
+        await OtpTokenActions.revokeExistingOtpToken(activeResetPasswordToken.id)
 
         return response.status(this.badRequest).send({
           status_code: this.badRequest,
@@ -113,32 +103,56 @@ export default class VerifyEmailController {
         })
       }
 
+      const user = (await UserActions.getUserRecordByEmail(activeResetPasswordToken.email))!
+
+      const accessToken = await auth.use('api').generate(user, {
+        expiresIn: `${businessConfig.accessTokenExpirationTimeFrame} minutes`,
+      })
+
+      const currentLoginDate = businessConfig.currentDateTime()
+
       await UserActions.updateUserRecord({
         dbTransactionOptions: {
           dbTransaction,
           useTransaction: true,
         },
         identifierOptions: {
-          identifier: userId,
+          identifier: user!.id,
           identifierType: 'id',
         },
         updatePayload: {
-          hasVerifiedEmail: true,
+          lastLoginDate: currentLoginDate,
         },
       })
-      await OtpTokenActions.revokeExistingOtpToken(existingOtpToken.id)
+
+      await OtpTokenActions.revokeExistingOtpToken(activeResetPasswordToken.id)
+
+      const mutatedUserPayload = {
+        identifier: user!.identifier,
+        first_name: user!.firstName,
+        last_name: user!.lastName,
+        full_name: user!.fullName,
+        email: user!.email,
+        access_credentials: accessToken,
+        meta: {
+          has_verified_email: user!.hasVerifiedEmail,
+          last_login_date: currentLoginDate,
+        },
+        created_at: user!.createdAt,
+      }
 
       await dbTransaction.commit()
 
       return response.status(this.ok).send({
-        status: SUCCESS,
         status_code: this.ok,
-        message: INFORMATION_VERIFIED,
+        status: SUCCESS,
+        message: AUTHENTICATION_SUCCESSFUL,
+        results: mutatedUserPayload,
       })
-    } catch (VerifyEmailControllerError) {
+    } catch (ValidateResetPasswordTokenControllerError) {
       console.log(
-        '🚀 ~ VerifyEmailControllerError.handle VerifyEmailControllerError ->',
-        VerifyEmailControllerError
+        '🚀 ~ ValidateResetPasswordTokenControllerError.handle ValidateResetPasswordTokenControllerError ->',
+        ValidateResetPasswordTokenControllerError
       )
 
       await dbTransaction.rollback()

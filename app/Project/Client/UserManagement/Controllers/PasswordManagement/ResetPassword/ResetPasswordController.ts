@@ -2,23 +2,17 @@ import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
   ERROR,
-  SUCCESS,
-  VALIDATION_ERROR,
   SOMETHING_WENT_WRONG,
-  NULL_OBJECT,
-  INVALID_CREDENTIALS,
-  INVALID_EMAIL_OTP,
-  EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
-  AUTHENTICATION_SUCCESSFUL,
+  SUCCESS,
+  USER_PASSWORD_MODIFICATION_SUCCESSFUL,
+  VALIDATION_ERROR,
 } from 'App/Common/Helpers/Messages/SystemMessages'
-import AuthenticateUserWithSingleUseCodeRequestValidator from 'App/Project/Client/UserManagement/Validators/Authentication/SingleUseOtpAuthentication/AuthenticateUserWithSingleUseCodeRequestValidator'
+import ResetPasswordRequestValidator from 'App/Project/Client/UserManagement/Validators/PasswordManagement/ResetPassword/ResetPasswordRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
-import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenActions'
-import hasFutureDateTimeElapsed from 'App/Common/Helpers/DateManagement/hasFutureDateTimeElapsed'
-import businessConfig from 'Config/businessConfig'
 import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
+import businessConfig from 'Config/businessConfig'
 
-export default class AuthenticateUserWithSingleUseTokenController {
+export default class ResetPasswordController {
   /*
   |--------------------------------------------------------------------------------
   | Status Codes
@@ -28,7 +22,6 @@ export default class AuthenticateUserWithSingleUseTokenController {
   private ok = HttpStatusCodeEnum.OK
   private internalServerError = HttpStatusCodeEnum.INTERNAL_SERVER_ERROR
   private unprocessableEntity = HttpStatusCodeEnum.UNPROCESSABLE_ENTITY
-  private badRequest = HttpStatusCodeEnum.BAD_REQUEST
 
   /*
   |--------------------------------------------------------------------------------
@@ -48,7 +41,7 @@ export default class AuthenticateUserWithSingleUseTokenController {
 
     try {
       try {
-        await request.validate(AuthenticateUserWithSingleUseCodeRequestValidator)
+        await request.validate(ResetPasswordRequestValidator)
       } catch (ValidationError) {
         await dbTransaction.rollback()
         return response.status(this.unprocessableEntity).send({
@@ -58,53 +51,12 @@ export default class AuthenticateUserWithSingleUseTokenController {
           results: ValidationError.messages,
         })
       }
+      const user = auth.user!
 
-      const { email, otpToken } = request.body()
+      const { password } = request.body()
 
-      const user = (await UserActions.getUserRecordByEmail(email))!
+      await auth.use('api').revoke()
 
-      const activeLoginToken = await OtpTokenActions.getActiveOtpToken({
-        email,
-        tokenType: 'login',
-      })
-
-      if (activeLoginToken === NULL_OBJECT) {
-        await dbTransaction.rollback()
-
-        return response.status(this.badRequest).send({
-          status_code: this.badRequest,
-          status: SUCCESS,
-          message: INVALID_CREDENTIALS,
-        })
-      }
-
-      if (activeLoginToken.token !== otpToken) {
-        await dbTransaction.rollback()
-
-        return response.status(this.badRequest).send({
-          status: ERROR,
-          status_code: this.badRequest,
-          message: INVALID_EMAIL_OTP,
-        })
-      }
-
-      const OTP_TOKEN_HAS_EXPIRED = true
-
-      const hasOtpTokenExpired = hasFutureDateTimeElapsed({
-        futureDateTime: activeLoginToken.expiresAt,
-      })
-
-      if (hasOtpTokenExpired === OTP_TOKEN_HAS_EXPIRED) {
-        await dbTransaction.rollback()
-
-        await OtpTokenActions.revokeExistingOtpToken(activeLoginToken.id)
-
-        return response.status(this.badRequest).send({
-          status_code: this.badRequest,
-          status: ERROR,
-          message: EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
-        })
-      }
       const accessToken = await auth.use('api').generate(user, {
         expiresIn: `${businessConfig.accessTokenExpirationTimeFrame} minutes`,
       })
@@ -122,10 +74,9 @@ export default class AuthenticateUserWithSingleUseTokenController {
         },
         updatePayload: {
           lastLoginDate: currentLoginDate,
+          password,
         },
       })
-
-      await OtpTokenActions.revokeExistingOtpToken(activeLoginToken.id)
 
       const mutatedUserPayload = {
         identifier: user!.identifier,
@@ -144,15 +95,15 @@ export default class AuthenticateUserWithSingleUseTokenController {
       await dbTransaction.commit()
 
       return response.status(this.ok).send({
-        status_code: this.ok,
         status: SUCCESS,
-        message: AUTHENTICATION_SUCCESSFUL,
+        status_code: this.ok,
+        message: USER_PASSWORD_MODIFICATION_SUCCESSFUL,
         results: mutatedUserPayload,
       })
-    } catch (AuthenticateUserWithSingleUseCodeControllerError) {
+    } catch (ResetPasswordControllerError) {
       console.log(
-        '🚀 ~ AuthenticateUserWithSingleUseCodeControllerError.handle AuthenticateUserWithSingleUseCodeControllerError ->',
-        AuthenticateUserWithSingleUseCodeControllerError
+        '🚀 ~ ResetPasswordControllerError.handle ResetPasswordControllerError ->',
+        ResetPasswordControllerError
       )
 
       await dbTransaction.rollback()

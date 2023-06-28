@@ -81,9 +81,19 @@ export default class OtpTokenActions {
    * @memberof OtpTokenActions
    */
   private static async getOtpTokenRecordByIdentifier(identifier: string) {
-    const otpToken = await OtpToken.query().where('identifier', identifier).first()
+    return OtpToken.query().where('identifier', identifier).first()
+  }
 
-    return otpToken || this.OTP_TOKEN_RECORD_NOT_FOUND
+  /**
+   * @description Method to get a OtpToken record by its token vale
+   * @author CMMA-CLI
+   * @static
+   * @param {string} token
+   * @returns {*}  {(Promise<OtpToken | null>)}
+   * @memberof OtpTokenActions
+   */
+  private static async getOtpTokenRecordByToken(token: string) {
+    return OtpToken.query().where('token', token).first()
   }
 
   /**
@@ -99,10 +109,12 @@ export default class OtpTokenActions {
   ): Promise<OtpToken | null> {
     const { identifier, identifierType } = getOtpTokenOptions
 
-    const GetOtpToken: Record<string, Function> = {
+    const GetOtpToken: Record<string, () => Promise<OtpToken | null>> = {
       id: async () => await this.getOtpTokenRecordById(Number(identifier)),
 
       identifier: async () => await this.getOtpTokenRecordByIdentifier(String(identifier)),
+
+      token: async () => await this.getOtpTokenRecordByToken(String(identifier)),
     }
 
     return await GetOtpToken[identifierType]()

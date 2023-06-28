@@ -4,7 +4,7 @@ type OtpTokenIdentifierOptions =
       identifier: number
     }
   | {
-      identifierType: 'identifier'
+      identifierType: 'identifier' | 'token'
       identifier: string
     }
 

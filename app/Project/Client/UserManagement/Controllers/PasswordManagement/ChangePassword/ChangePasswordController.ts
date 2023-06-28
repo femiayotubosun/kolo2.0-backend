@@ -5,19 +5,16 @@ import {
   SUCCESS,
   VALIDATION_ERROR,
   SOMETHING_WENT_WRONG,
-  INFORMATION_ALREADY_VERIFIED,
-  INVALID_EMAIL_OTP,
-  NULL_OBJECT,
-  EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
-  INFORMATION_VERIFIED,
+  INVALID_CREDENTIALS,
+  CHANGE_PASSWORD_SUCCESS,
 } from 'App/Common/Helpers/Messages/SystemMessages'
-import VerifyEmailRequestValidator from 'App/Project/Client/UserManagement/Validators/AccountVerification/VerifyEmailRequestValidator'
+import ChangePasswordRequestValidator from 'App/Project/Client/UserManagement/Validators/PasswordManagement/ChangePassword/ChangePasswordRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
-import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenActions'
-import hasFutureDateTimeElapsed from 'App/Common/Helpers/DateManagement/hasFutureDateTimeElapsed'
+import CipherClient from 'App/InfrastructureProviders/Internal/CipherClient'
+import businessConfig from 'Config/businessConfig'
 import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
 
-export default class VerifyEmailController {
+export default class ChangePasswordController {
   /*
   |--------------------------------------------------------------------------------
   | Status Codes
@@ -47,7 +44,7 @@ export default class VerifyEmailController {
 
     try {
       try {
-        await request.validate(VerifyEmailRequestValidator)
+        await request.validate(ChangePasswordRequestValidator)
       } catch (ValidationError) {
         await dbTransaction.rollback()
         return response.status(this.unprocessableEntity).send({
@@ -57,61 +54,23 @@ export default class VerifyEmailController {
           results: ValidationError.messages,
         })
       }
+      const { oldPassword, newPassword } = request.body()
+      const user = auth.user!
 
-      const { otpToken } = request.body()
-      const user = auth.user
-      const userId = user!.id
+      const PASSWORD_DOES_NOT_MATCH = false
 
-      const HAS_VERIFIED_EMAIL = 'Yes'
+      const passwordMatch = await CipherClient.verifyHashKey(user!.password, oldPassword)
 
-      if (user!.hasVerifiedEmail === HAS_VERIFIED_EMAIL) {
-        await dbTransaction.rollback()
-        return response.status(this.ok).send({
-          status: SUCCESS,
-          status_code: this.ok,
-          message: INFORMATION_ALREADY_VERIFIED,
-        })
-      }
-
-      const existingOtpToken = await OtpTokenActions.getActiveOtpToken({
-        email: user!.email,
-        tokenType: 'email-verification',
-      })
-
-      if (existingOtpToken === NULL_OBJECT) {
+      if (passwordMatch === PASSWORD_DOES_NOT_MATCH) {
         await dbTransaction.rollback()
         return response.status(this.badRequest).send({
           status_code: this.badRequest,
           status: ERROR,
-          message: INVALID_EMAIL_OTP,
+          message: INVALID_CREDENTIALS,
         })
       }
 
-      if (existingOtpToken.token !== otpToken) {
-        await dbTransaction.rollback()
-        return response.status(this.badRequest).send({
-          status: ERROR,
-          status_code: this.badRequest,
-          message: INVALID_EMAIL_OTP,
-        })
-      }
-
-      const OTP_TOKEN_HAS_EXPIRED = true
-
-      const hasOtpTokenExpired = hasFutureDateTimeElapsed({
-        futureDateTime: existingOtpToken.expiresAt,
-      })
-
-      if (hasOtpTokenExpired === OTP_TOKEN_HAS_EXPIRED) {
-        await dbTransaction.rollback()
-        await OtpTokenActions.revokeExistingOtpToken(existingOtpToken.id)
-
-        return response.status(this.badRequest).send({
-          status_code: this.badRequest,
-          status: ERROR,
-          message: EMAIL_EXPIRED_OTP_REQUEST_NEW_TOKEN,
-        })
-      }
+      const currentLoginDate = businessConfig.currentDateTime()
 
       await UserActions.updateUserRecord({
         dbTransactionOptions: {
@@ -119,26 +78,47 @@ export default class VerifyEmailController {
           useTransaction: true,
         },
         identifierOptions: {
-          identifier: userId,
+          identifier: user!.id,
           identifierType: 'id',
         },
         updatePayload: {
-          hasVerifiedEmail: true,
+          password: newPassword,
+          lastLoginDate: currentLoginDate,
         },
       })
-      await OtpTokenActions.revokeExistingOtpToken(existingOtpToken.id)
 
       await dbTransaction.commit()
 
-      return response.status(this.ok).send({
-        status: SUCCESS,
-        status_code: this.ok,
-        message: INFORMATION_VERIFIED,
+      await auth.use('api').revoke()
+
+      const accessToken = await auth.use('api').attempt(user!.email, newPassword, {
+        expiresIn: `${businessConfig.accessTokenExpirationTimeFrame} minutes`,
       })
-    } catch (VerifyEmailControllerError) {
+
+      const mutatedUserPayload = {
+        identifier: user!.identifier,
+        first_name: user!.firstName,
+        last_name: user!.lastName,
+        full_name: user!.fullName,
+        email: user!.email,
+        access_credentials: accessToken,
+        meta: {
+          has_verified_email: user!.hasVerifiedEmail,
+          last_login_date: currentLoginDate,
+        },
+        created_at: user!.createdAt,
+      }
+
+      return response.status(this.ok).send({
+        status_code: this.ok,
+        status: SUCCESS,
+        message: CHANGE_PASSWORD_SUCCESS,
+        results: mutatedUserPayload,
+      })
+    } catch (ChangePasswordControllerError) {
       console.log(
-        '🚀 ~ VerifyEmailControllerError.handle VerifyEmailControllerError ->',
-        VerifyEmailControllerError
+        '🚀 ~ ChangePasswordControllerError.handle ChangePasswordControllerError ->',
+        ChangePasswordControllerError
       )
 
       await dbTransaction.rollback()

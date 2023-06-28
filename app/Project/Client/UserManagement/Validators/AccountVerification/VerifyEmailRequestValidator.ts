@@ -6,18 +6,23 @@ export default class VerifyEmailRequestValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    otp_token: schema.string([
+    otpToken: schema.string([
       rules.minLength(businessConfig.otpToken.tokenLength),
       rules.maxLength(businessConfig.otpToken.tokenLength),
       rules.trim(),
       rules.escape(),
+      rules.exists({
+        table: 'otp_tokens',
+        column: 'token',
+      }),
     ]),
   })
 
   public messages: CustomMessages = {
-    'email_token.required': 'Email Token is compulsory',
-    'email_token.string': 'Email token provided must be a string',
-    'email_token.minLength': `Email Token provided must be ${businessConfig.otpToken.tokenLength} characters long`,
-    'email_token.maxLength': `Email Token provided must be ${businessConfig.otpToken.tokenLength} characters long`,
+    'otpToken.required': 'OTP Token is compulsory',
+    'otpToken.string': 'OTP Token provided must be a string',
+    'otpToken.minLength': `OTP Token provided must be ${businessConfig.otpToken.tokenLength} characters long`,
+    'otpToken.maxLength': `OTP Token provided must be ${businessConfig.otpToken.tokenLength} characters long`,
+    'otpToken.exists': 'OTP Token must be valid',
   }
 }

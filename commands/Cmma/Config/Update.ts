@@ -20,10 +20,10 @@ import {
   FOUND_NUMBER_OF_ENTITIES_ON_DISK_BUT_NOT_ON_MAP,
   FOUND_NUMBER_OF_ENTITY_ON_MAP_BUT_NOT_ON_DISK,
 } from '../../../cmma/Helpers/SystemMessages/SystemMessageFunction'
-import CmmaArtifactActions from '../../../cmma/Actions/CmmaArtifactActions'
 import CmmaModuleActions from '../../../cmma/Actions/CmmaModuleActions'
 import CmmaModule from '../../../cmma/Models/CmmaModule'
 import CmmaArtifactDirs from '../../../cmma/TypeChecking/CmmaArtifactDirs'
+import CmmaArtifact from '../../../cmma/Models/CmmaArtifact'
 
 export default class ConfigUpdate extends BaseCmmaCommand {
   /*
@@ -71,6 +71,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
     const contextsOnDisk = CmmaFileActions.listContextsOnDisk(this.projectRootPath)
     let contextsOnProjectMap = CmmaProjectMapActions.listContextsInProject(this.projectMap)
 
+    if (!contextsOnDisk || !contextsOnProjectMap) return
+
     const contextsOnDiskButNotOnMap = differenceOfArrays(contextsOnDisk, contextsOnProjectMap)
 
     if (contextsOnDiskButNotOnMap.length) {
@@ -112,6 +114,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
 
     const contextsOnProjectMap = CmmaProjectMapActions.listContextsInProject(this.projectMap)
     const contextsOnDisk = CmmaFileActions.listContextsOnDisk(this.projectRootPath)
+
+    if (!contextsOnProjectMap || !contextsOnDisk) return
 
     const contextsOnMapNotOnDisk = differenceOfArrays(contextsOnProjectMap, contextsOnDisk)
 
@@ -199,6 +203,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
     const systemsOnDisk = CmmaFileActions.listSubDirsInDir(diskContextDir)
     const systemsOnProjectMap = CmmaContextActions.listSystemsInContext(contextMap)
 
+    if (!systemsOnDisk || !systemsOnProjectMap) return
+
     const systemsOnDiskButNotOnProjectMap = differenceOfArrays(systemsOnDisk, systemsOnProjectMap)
 
     if (systemsOnDiskButNotOnProjectMap.length) {
@@ -250,6 +256,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
 
     const systemsOnProjectMap = CmmaContextActions.listSystemsInContext(contextMap)
     const systemsOnDisk = CmmaFileActions.listSubDirsInDir(diskContextDir)
+
+    if (!systemsOnProjectMap || !systemsOnDisk) return
 
     const systemsOnProjectMapButNotOnDisk = differenceOfArrays(systemsOnProjectMap, systemsOnDisk)
 
@@ -368,6 +376,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
 
     const modulesOnMap = CmmaSystemActions.listModulesInSystem(systemMap)
 
+    if (!modulesOnDisk || !modulesOnMap) return
+
     const routesOnDiskButNotOnMap = differenceOfArrays(modulesOnDisk, modulesOnMap)
 
     if (routesOnDiskButNotOnMap.length) {
@@ -433,6 +443,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
     const modulesOnDisk = routesOnDisk.map((routeLabel) => {
       return routeLabel.replace(projectRoutesSuffix.suffix!, '')
     })
+
+    if (!modulesOnMap || !modulesOnDisk) return
 
     const routesOnMapButNotOnDisk = differenceOfArrays(modulesOnMap, modulesOnDisk)
 
@@ -607,6 +619,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
         moduleMap,
       })
 
+      if (!moduleArtifactsOnDisk || !moduleArtifactsOnMap) return
+
       const artifactsOnDiskButNotOnMap = differenceOfArrays(
         moduleArtifactsOnDisk,
         moduleArtifactsOnMap
@@ -622,7 +636,7 @@ export default class ConfigUpdate extends BaseCmmaCommand {
       }
 
       artifactsOnDiskButNotOnMap.forEach((artifactLabel) => {
-        let artifact = CmmaArtifactActions.blankArtifact
+        let artifact: CmmaArtifact
         artifact = artifactLabel
 
         CmmaModuleActions.addArtifactToModule({
@@ -679,6 +693,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
       const moduleArtifactsOnDisk = filesInArtifactDir
         .map((file) => file.split('.')[0])
         .filter((filename) => filename !== 'index')
+
+      if (!moduleArtifactsOnMap || !moduleArtifactsOnDisk) return
 
       const artifactsOnMapButNotOnDisk = differenceOfArrays(
         moduleArtifactsOnDisk,
@@ -863,7 +879,7 @@ export default class ConfigUpdate extends BaseCmmaCommand {
     }
 
     artifactsOnDiskButNotOnMap.forEach((artifactLabel) => {
-      let artifact = CmmaArtifactActions.blankArtifact
+      let artifact: CmmaArtifact
       artifact = artifactLabel
 
       CmmaSystemActions.addArtifactToArtifactGroup({
@@ -914,6 +930,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
     const artifactsOnDisk = filesInArtifactDir
       .map((file) => file.split('.')[0])
       .filter((filename) => filename !== 'index')
+
+    if (!artifactGroup || !artifactsOnDisk) return
 
     const artifactsOnMapButNotOnDisk = differenceOfArrays(artifactGroup, artifactsOnDisk)
 

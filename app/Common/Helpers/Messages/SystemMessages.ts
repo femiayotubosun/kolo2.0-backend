@@ -370,8 +370,8 @@ export const NEW_SYSTEM_ADMIN_SUBJECT =
   'Welcome to Akiba - Your Administrator Account Details Inside!'
 export const SINGLE_USE_LOGIN_TOKEN_SUBJECT = 'Single Use Login Token'
 
-export const RESET_YOUR_PASSWORD = 'Reset Your Password'
-export const CHANGE_YOUR_PASSWORD = 'Change Your Password'
+export const RESET_YOUR_PASSWORD_SUBJECT = 'Reset Your Password'
+export const CHANGE_YOUR_PASSWORD_SUBJECT = 'Change Your Password'
 
 // Email Client Response
 export const SEND_EMAIL_SUCCESSFUL = 'Email Sent Successfully'

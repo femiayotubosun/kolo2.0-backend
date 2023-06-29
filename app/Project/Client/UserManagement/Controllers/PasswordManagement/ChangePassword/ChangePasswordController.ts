@@ -1,16 +1,16 @@
 import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
+  CHANGE_PASSWORD_SUCCESS,
   ERROR,
+  INVALID_CREDENTIALS,
+  SOMETHING_WENT_WRONG,
   SUCCESS,
   VALIDATION_ERROR,
-  SOMETHING_WENT_WRONG,
-  INVALID_CREDENTIALS,
-  CHANGE_PASSWORD_SUCCESS,
 } from 'App/Common/Helpers/Messages/SystemMessages'
 import ChangePasswordRequestValidator from 'App/Project/Client/UserManagement/Validators/PasswordManagement/ChangePassword/ChangePasswordRequestValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
-import CipherClient from 'App/InfrastructureProviders/Internal/CipherClient'
+import Hash from '@ioc:Adonis/Core/Hash'
 import businessConfig from 'Config/businessConfig'
 import UserActions from 'App/Project/Client/UserManagement/Actions/UserActions'
 
@@ -59,7 +59,7 @@ export default class ChangePasswordController {
 
       const PASSWORD_DOES_NOT_MATCH = false
 
-      const passwordMatch = await CipherClient.verifyHashKey(user!.password, oldPassword)
+      const passwordMatch = await Hash.verify(user!.password!, oldPassword)
 
       if (passwordMatch === PASSWORD_DOES_NOT_MATCH) {
         await dbTransaction.rollback()

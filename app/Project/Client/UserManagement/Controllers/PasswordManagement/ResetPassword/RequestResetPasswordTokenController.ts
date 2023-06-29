@@ -54,8 +54,6 @@ export default class RequestResetPasswordTokenController {
         })
       }
 
-      await dbTransaction.commit()
-
       const { email } = request.body()
 
       const user = (await UserActions.getUserRecord({

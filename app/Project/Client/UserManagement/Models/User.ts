@@ -40,12 +40,12 @@ export default class User extends AbstractModel {
   public lastLoginDate: DateTime
 
   @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
+    consume: (value: number) => (value ? 'Yes' : 'No'),
   })
   public isFirstTimeLogin: boolean | string
 
   @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
+    consume: (value: number) => (value ? 'Yes' : 'No'),
   })
   public hasVerifiedEmail: boolean | string
 
@@ -53,12 +53,12 @@ export default class User extends AbstractModel {
   public loginAttempts: number
 
   @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
+    consume: (value: number) => (value ? 'Yes' : 'No'),
   })
   public isActive: boolean | string
 
   @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
+    consume: (value: number) => (value ? 'Yes' : 'No'),
   })
   public isDeleted: boolean | string
 

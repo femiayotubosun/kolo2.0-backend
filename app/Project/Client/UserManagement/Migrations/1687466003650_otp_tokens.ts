@@ -12,7 +12,7 @@ export default class OtpTokens extends BaseSchema {
           'login',
           'email-verification',
           'mobile-number-verification',
-          'password-reset',
+          'reset-password',
           'change-password',
         ])
         .nullable()

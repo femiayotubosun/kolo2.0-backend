@@ -602,7 +602,7 @@ export default class ConfigUpdate extends BaseCmmaCommand {
         .toContext(diskContextLabel)
         .toSystem(diskSystemLabel)
         .toArtifactsDir(moduleInDir)
-        .toModelDir(diskModuleLabel)
+        .toModule(diskModuleLabel)
         .getAbsoluteOsPath(this.application.appRoot)
 
       if (!CmmaFileActions.doesPathExist(moduleArtifactsDirOnDiskDir)) return
@@ -676,7 +676,7 @@ export default class ConfigUpdate extends BaseCmmaCommand {
         .toContext(diskContextLabel)
         .toSystem(diskSystemLabel)
         .toArtifactsDir(moduleInDir)
-        .toModelDir(diskModuleLabel)
+        .toModule(diskModuleLabel)
         .getAbsoluteOsPath(this.application.appRoot)
 
       if (!CmmaFileActions.doesPathExist(moduleArtifactsDirOnDiskDir)) return
@@ -697,8 +697,8 @@ export default class ConfigUpdate extends BaseCmmaCommand {
       if (!moduleArtifactsOnMap || !moduleArtifactsOnDisk) return
 
       const artifactsOnMapButNotOnDisk = differenceOfArrays(
-        moduleArtifactsOnDisk,
-        moduleArtifactsOnMap
+        moduleArtifactsOnMap,
+        moduleArtifactsOnDisk
       )
 
       if (artifactsOnMapButNotOnDisk.length) {

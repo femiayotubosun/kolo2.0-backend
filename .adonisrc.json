@@ -7,7 +7,8 @@
     "@adonisjs/lucid/build/commands",
     "@adonisjs/mail/build/commands",
     "@melchyore/adonis-cache/build/commands",
-    "@setten/bull-queue/build/commands"
+    "@setten/bull-queue/build/commands",
+    "adonis-sail/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {

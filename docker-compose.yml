@@ -1,0 +1,46 @@
+# For more information: https://github.com/julien-r44/adonis-sail
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - pgsql
+    ports:
+      - "3333:3333"
+    environment:
+      PG_HOST: pgsql
+      PG_PORT: 5432
+      PG_USER: "postgres"
+      PG_PASSWORD: "postgres"
+      PG_DB_NAME: "kolo_dev"
+    volumes:
+      - '.:/app'
+
+  pgsql:
+    image: 'postgres:13'
+    container_name: pgsql
+    ports:
+      - '${PG_PORT:-5432}:5432'
+    environment:
+      PGPASSWORD: 'postgres'
+      POSTGRES_DB: 'kolo_dev'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - 'sailpgsql:/var/lib/postgresql/data'
+    networks:
+      - sail
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${PG_DB_NAME:-default}", "-U", "${PG_USER}"]
+      retries: 3
+      timeout: 5s
+
+networks:
+  sail:
+    driver: bridge
+
+volumes:
+  sailpgsql:

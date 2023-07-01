@@ -1,4 +1,16 @@
-FROM ubuntu:latest
-LABEL authors="ƒa†3"
+FROM node:18-16.0-alpine
+LABEL authors="Femi Tubosun | ƒa†3"
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+COPY package*.json ./
+
+RUN npm ci
+COPY . .
+
+RUN ["node", "ace", "cmma:config-create"]
+RUN ["node", "ace", "cmma:config-update"]
+
+EXPOSE 3333
+
+CMD ["npm", "run", "dev"]
+

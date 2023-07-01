@@ -1,7 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('Process/Fetch/UserProfileDetails', 'FetchUserProfileDetailsController').as(
+  Route.get('Fetch/UserProfileDetails', 'FetchUserProfileDetailsController').as(
     'fetch-user-profile-details'
   )
 })

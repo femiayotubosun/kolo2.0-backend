@@ -16,4 +16,12 @@ export default class UserRegistrationStep extends AbstractModel {
 
   @column()
   public hasUpgradedAccount: boolean
+
+  public get forClient() {
+    return {
+      hasVerifiedAccount: this.hasVerifiedAccount,
+      hasSecuredAccount: this.hasSecuredAccount,
+      hasUpgradedAccount: this.hasUpgradedAccount,
+    }
+  }
 }

@@ -183,6 +183,6 @@ export default class CreateOptions extends BaseCmmaArtifactCommand {
       }).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

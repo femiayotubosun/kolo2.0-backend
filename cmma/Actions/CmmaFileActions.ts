@@ -17,7 +17,7 @@ export default class CmmaFileActions {
   /**
    * @description Append Text To File
    * @param appendToFileOptions
-   * @author FATE
+   * @author ƒa†3
    */
   public static appendToFile(appendToFileOptions: { filePath: string; text: string }) {
     const { filePath, text } = appendToFileOptions
@@ -27,7 +27,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Ensure a file exists
-   * @author FATE
+   * @author ƒa†3
    * @param filePath
    */
   public static ensureAFileExists(filePath: string) {
@@ -36,7 +36,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Ensure a directory Exists
-   * @author FATE
+   * @author ƒa†3
    * @param {} dirPath
    */
   public static ensureADirectoryExits(dirPath: string) {
@@ -46,14 +46,14 @@ export default class CmmaFileActions {
   /**
    * @description Format file
    * @param formatFileOptions
-   * @author FATE
+   * @author ƒa†3
    */
-  public static formatFile(formatFileOptions: { filePath: string; parser: string }) {
+  public static async formatFile(formatFileOptions: { filePath: string; parser: string }) {
     const { filePath, parser } = formatFileOptions
 
     const fileContents = readFileSync(filePath, 'utf8')
 
-    const formattedCode = prettier.format(fileContents, {
+    const formattedCode = await prettier.format(fileContents, {
       parser,
     })
 
@@ -65,7 +65,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Write to a File
-   * @author FATE
+   * @author ƒa†3
    * @param {} writeToFileOptions
    */
   public static writeToFile(writeToFileOptions: { filePath: string; text: string }) {
@@ -76,7 +76,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Create a relative file Path from Node Path
-   * @author FATE
+   * @author ƒa†3
    * @param createRelativeFilePathFromNodePathOptions
    */
   public static createRelativeFilePathFromNodePath(createRelativeFilePathFromNodePathOptions: {
@@ -120,7 +120,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Does a File Path Exist?
-   * @author FATE
+   * @author ƒa†3
    * @param path
    */
   public static doesPathExist(path: string) {
@@ -129,7 +129,7 @@ export default class CmmaFileActions {
 
   /**
    * @description Get CMMA Configuration from File Path
-   * @author FATE
+   * @author ƒa†3
    * @param filePath
    */
   public static getConfigurationObjectFromFilePath(filePath: string): CmmaConfiguration {
@@ -142,10 +142,10 @@ export default class CmmaFileActions {
 
   /**
    * @description Write CMMA Configuration To Configuration Object
-   * @author FATE
+   * @author ƒa†3
    * @param {} writeConfigObjectToConfigFileOptions
    */
-  public static writeConfigObjectToConfigFile(writeConfigObjectToConfigFileOptions: {
+  public static async writeConfigObjectToConfigFile(writeConfigObjectToConfigFileOptions: {
     configObject: CmmaConfiguration
     configFilePath: string
   }) {
@@ -153,7 +153,7 @@ export default class CmmaFileActions {
 
     writeFileSync(configFilePath, JSON.stringify(configObject))
 
-    this.formatFile({
+    await this.formatFile({
       filePath: configFilePath,
       parser: 'json',
     })
@@ -161,7 +161,7 @@ export default class CmmaFileActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param dirPath
    */
   public static listFilesInDir(dirPath: string) {
@@ -175,7 +175,7 @@ export default class CmmaFileActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param dirPath
    * @param filesArray
    */
@@ -201,7 +201,7 @@ export default class CmmaFileActions {
 
   /**
    * @description List Files in a Dir without their extension
-   * @author FATE
+   * @author ƒa†3
    * @param dirPath
    */
   public static listFilesInDirWithoutTheirExtensions(dirPath: string) {
@@ -219,7 +219,7 @@ export default class CmmaFileActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param {} listFilesInDirWithExtensionOptions
    */
   public static listFilesInDirWithExtension(listFilesInDirWithExtensionOptions: {
@@ -237,7 +237,7 @@ export default class CmmaFileActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param dirPath
    */
   public static listSubDirsInDir(dirPath: string) {
@@ -251,7 +251,7 @@ export default class CmmaFileActions {
 
   /**
    * @description List the Contexts Defined in Project's Root Directory
-   * @author FATE
+   * @author ƒa†3
    * @param {} projectRootDir
    */
   public static listContextsOnDisk(projectRootDir: string) {
@@ -260,7 +260,7 @@ export default class CmmaFileActions {
 
   /**
    * @description List the Routes Files in System Route Dir
-   * @author FATE
+   * @author ƒa†3
    * @param dirPath
    */
   public static listRoutesInSystemRoutesDir(dirPath: string) {

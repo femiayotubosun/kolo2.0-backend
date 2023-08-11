@@ -133,6 +133,6 @@ export default class Context extends BaseCmmaBoundaryCommand {
 
     this.commandArgs = [CmmaProjectMapActions.listContextsInProject(this.projectMap).length - 1]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

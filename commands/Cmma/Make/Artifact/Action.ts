@@ -123,6 +123,6 @@ export default class Action extends BaseCmmaArtifactCommand {
       }).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

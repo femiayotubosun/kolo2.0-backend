@@ -112,6 +112,6 @@ export default class View extends BaseCmmaArtifactCommand {
     //   }).length - 1,
     // ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

@@ -215,6 +215,6 @@ export default class Init extends BaseCmmaBoundaryCommand {
 
     for (let i = 0; i < projectContexts.length; i++) this.commandArgs.push(i)
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

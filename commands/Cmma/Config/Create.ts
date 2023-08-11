@@ -68,8 +68,7 @@ export default class ConfigCreate extends BaseCmmaCommand {
     }
 
     CmmaFileActions.ensureAFileExists(this.CONFIG_FILE_PATH)
-    this.logger.action('create').succeeded(this.CONFIG_FILE_PATH)
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

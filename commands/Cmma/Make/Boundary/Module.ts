@@ -169,6 +169,6 @@ Route.group(() => {
       CmmaSystemActions.listModulesInSystem(this.systemMap).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

@@ -190,6 +190,6 @@ export default class System extends BaseCmmaBoundaryCommand {
       CmmaContextActions.listSystemsInContext(this.contextMap).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

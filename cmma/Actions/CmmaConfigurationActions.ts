@@ -9,7 +9,7 @@ import CmmaArtifactType from '../TypeChecking/CmmaArtifactType'
 export default class CmmaConfigurationActions {
   /**
    * @description Resolve Project Identifier
-   * @author FATE
+   * @author ƒa†3
    * @param {} resolveIdentifierOptions
    */
   public static resolveIdentifierToCasePattern(resolveIdentifierOptions: {
@@ -33,7 +33,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description Transform an Artifact Label with Suffix, Prefix, Extension and Pattern
-   * @author FATE
+   * @author ƒa†3
    * @param {TransformLabelOptions} transformLabelOptions
    */
   public static transformLabel(transformLabelOptions: TransformLabelOptions): string {
@@ -76,7 +76,7 @@ export default class CmmaConfigurationActions {
   /**
    * @description Get the string transformations for an artifact type
    * @param getArtifactGroupTransformationOptions
-   * @author FATE
+   * @author ƒa†3
    * @returns CmmaStringTransformations
    */
   public static getArtifactTypeTransformationWithExtension(getArtifactGroupTransformationOptions: {
@@ -196,7 +196,7 @@ export default class CmmaConfigurationActions {
   /**
    * @description Get the string transformations for an artifact type without an extension
    * @param getArtifactGroupTransformationOptions
-   * @author FATE
+   * @author ƒa†3
    * @returns CmmaStringTransformations
    */
   public static getArtifactTypeTransformationWithoutExtension(getArtifactGroupTransformationOptions: {
@@ -299,7 +299,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description Get an Artifact's Default Directory
-   * @author FATE
+   * @author ƒa†3
    * @param {} artifactType
    */
   public static getDefaultArtifactTypeDir(artifactType: CmmaArtifactType) {
@@ -329,7 +329,7 @@ export default class CmmaConfigurationActions {
   /**
    * @description Get the string transformations for an artifact group
    * @param getArtifactGroupTransformationOptions
-   * @author FATE
+   * @author ƒa†3
    * @returns CmmaStringTransformations
    */
   public static getArtifactGroupTransformation(getArtifactGroupTransformationOptions: {
@@ -406,7 +406,7 @@ export default class CmmaConfigurationActions {
   /**
    * @description Make an Identifier Consistent with CMMA Project Case Pattern
    * @param normalizeProjectIdentifierOptions
-   * @author FATE
+   * @author ƒa†3
    */
   public static normalizeProjectIdentifier(normalizeProjectIdentifierOptions: {
     identifier: string
@@ -422,7 +422,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description Normalize any identifier by case pattern
-   * @author FATE
+   * @author ƒa†3
    * @param {} identifierNormalizerOptions
    */
   public static identifierNormalizer(identifierNormalizerOptions: {
@@ -446,7 +446,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description List Default System Artifact Directories
-   * @author FATE
+   * @author ƒa†3
    * @param configObject
    */
   public static whatIsDefaultSystemArtifactDirs(configObject: CmmaConfiguration) {
@@ -455,7 +455,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description Get Default Project Location in /app
-   * @author FATE
+   * @author ƒa†3
    * @param configObject
    */
   public static whatIsDefaultProjectRootInApp(configObject: CmmaConfiguration) {
@@ -464,7 +464,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description What is the default System Suffix
-   * @author FATE
+   * @author ƒa†3
    * @param configObject
    */
   public static whatIsDefaultSystemSuffix(configObject: CmmaConfiguration) {
@@ -473,7 +473,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description What is the default Case Pattern
-   * @author FATE
+   * @author ƒa†3
    * @param configObject
    */
   public static whatIsDefaultCasePattern(configObject: CmmaConfiguration) {
@@ -482,7 +482,7 @@ export default class CmmaConfigurationActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param configObject
    */
   public static whatIsDefaultCreateModuleDirIn(configObject: CmmaConfiguration) {

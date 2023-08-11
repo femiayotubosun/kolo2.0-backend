@@ -5,7 +5,7 @@ import CmmaArtifact from '../Models/CmmaArtifact'
 export default class CmmaProjectMapActions {
   /**
    * @description Add a Context to Project
-   * @author FATE
+   * @author ƒa†3
    * @param addContextToProjectOptions
    */
   public static addContextToProject(addContextToProjectOptions: {
@@ -22,7 +22,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Get a Context's Index By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getContextIndexByLabelOptions
    */
   public static getContextIndexByLabel(getContextIndexByLabelOptions: {
@@ -37,7 +37,7 @@ export default class CmmaProjectMapActions {
   /**
    * @description Get Context By Index
    * @param getContextObjectByIndexOptions
-   * @author Fate
+   * @author ƒa†3
    */
   public static getContextByIndex(getContextObjectByIndexOptions: {
     contextIndex: number
@@ -51,7 +51,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Get a context by Label
-   * @author FATE
+   * @author ƒa†3
    * @param getContextFromProjectMapOptions
    */
   public static getContextMapByLabel(getContextFromProjectMapOptions: {
@@ -65,7 +65,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description List Contexts In Project
-   * @author FATE
+   * @author ƒa†3
    * @param {CmmaProjectMap} projectMap
    */
   public static listContextsInProject(projectMap: CmmaProjectMap) {
@@ -74,7 +74,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Delete Context By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteContextByIndexOptions
    */
   public static deleteContextByIndex(deleteContextByIndexOptions: {
@@ -91,7 +91,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Delete Context By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteContextByLabelOptions
    */
   public static deleteContextByLabel(deleteContextByLabelOptions: {
@@ -105,7 +105,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Check if Context is in Project
-   * @author FATE
+   * @author ƒa†3
    * @param {} isContextInProjectOptions
    */
   public static isContextInProject(isContextInProjectOptions: {
@@ -128,7 +128,7 @@ export default class CmmaProjectMapActions {
 
   /**
    * @description Get Blank Project Map
-   * @author FATE
+   * @author ƒa†3
    */
   public static get blankProjectMap(): CmmaProjectMap {
     return {

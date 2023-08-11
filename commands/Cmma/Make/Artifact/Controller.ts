@@ -139,6 +139,6 @@ export default class Controller extends BaseCmmaArtifactCommand {
       CmmaModuleActions.listModuleControllers(this.moduleMap).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

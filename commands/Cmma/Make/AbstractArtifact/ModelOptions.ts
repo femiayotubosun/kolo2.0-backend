@@ -208,6 +208,6 @@ export default class ModelOptions extends BaseCmmaAbstractArtifactCommand {
     //   }).length - 1,
     // ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

@@ -3,7 +3,7 @@ import CmmaArtifact from '../Models/CmmaArtifact'
 export default class CmmaArtifactActions {
   /**
    * @description Method to get a blank artifact map
-   * @author FATE
+   * @author ƒa†3
    * @returns {CmmaArtifact}
    *
    */
@@ -13,7 +13,7 @@ export default class CmmaArtifactActions {
 
   /**
    * @description What is node path from Project Map
-   * @author FATE
+   * @author ƒa†3
    * @param {} whatIsNodeMapFromMeOptions
    */
   public static whatIsNodePathFromMe(whatIsNodeMapFromMeOptions: { artifactLabel?: string }) {

@@ -5,7 +5,7 @@ import CmmaArtifactDirs from '../TypeChecking/CmmaArtifactDirs'
 export default class CmmaModuleActions {
   /**
    * @description Add ModuleController to Module
-   * @author FATE
+   * @author ƒa†3
    * @param {} addModuleControllerToModuleOptions
    */
   public static addModuleControllerToModule(addModuleControllerToModuleOptions: {
@@ -19,7 +19,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Add ModuleValidator to Module
-   * @author FATE
+   * @author ƒa†3
    * @param {} addModuleValidatorToModuleOptions
    */
   public static addModuleValidatorToModule(addModuleValidatorToModuleOptions: {
@@ -33,7 +33,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Add Artifact to Module
-   * @author FATE
+   * @author ƒa†3
    * @param {} addArtifactToModuleOptions
    */
   public static addArtifactToModule(addArtifactToModuleOptions: {
@@ -48,7 +48,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Get Module Controllers
-   * @author FATE
+   * @author ƒa†3
    * @param {CmmaModule} module
    */
   public static listModuleControllers(module: CmmaModule) {
@@ -57,7 +57,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Get Module Validators
-   * @author FATE
+   * @author ƒa†3
    * @param {CmmaModule} module
    */
   public static listModuleValidators(module: CmmaModule) {
@@ -66,7 +66,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param {} listModuleArtifactsByTypeOptions
    */
   public static listModuleArtifactsByDirLabel(listModuleArtifactsByTypeOptions: {
@@ -80,7 +80,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Check if controller is in module
-   * @author FATE
+   * @author ƒa†3
    * @param {} isControllerInModuleOptions
    */
   public static isControllerInModule(isControllerInModuleOptions: {
@@ -94,7 +94,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Check if validator is in module
-   * @author FATE
+   * @author ƒa†3
    * @param {} isValidatorInModuleOptions
    */
   public static isValidatorInModule(isValidatorInModuleOptions: {
@@ -108,7 +108,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Check if a Module Artifact is in an Artifact Dir
-   * @author FATE
+   * @author ƒa†3
    * @param {} isModuleArtifactInArtifactDirOptions
    */
   public static isModuleArtifactInArtifactDir(isModuleArtifactInArtifactDirOptions: {
@@ -123,7 +123,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Delete a Module Artifact from Artifact Dir
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteModuleArtifactFromArtifactDirOptions
    */
   public static deleteModuleArtifactFromArtifactDir(deleteModuleArtifactFromArtifactDirOptions: {
@@ -145,7 +145,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description Method to get a blank CmmaModule Map
-   * @author FATE
+   * @author ƒa†3
    * @returns {CmmaModule}
    */
   public static get blankModuleMap(): CmmaModule {
@@ -154,7 +154,7 @@ export default class CmmaModuleActions {
 
   /**
    * @description What is node path from Project Map
-   * @author FATE
+   * @author ƒa†3
    * @param {} whatIsNodeMapFromMeOptions
    */
   public static whatIsNodePathFromMe(whatIsNodeMapFromMeOptions: {

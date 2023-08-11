@@ -50,7 +50,7 @@ export default class ModelAction extends BaseCmmaArtifactCommand {
   /**
    * @description Get Artifact's template File
    * @protected
-   * @author FATE
+   * @author ƒa†3
    */
   protected getTemplateFilePath() {
     const templatesDir = CmmaFileActions.getCmmaTemplatesDir(this.application.appRoot)
@@ -64,7 +64,7 @@ export default class ModelAction extends BaseCmmaArtifactCommand {
   /**
    * @description Get Artifact's Template Data
    * @protected
-   * @author FATE
+   * @author ƒa†3
    */
   protected getTemplateData(): any {
     const modelVariableName = CmmaConfigurationActions.transformLabel({
@@ -193,6 +193,6 @@ export default class ModelAction extends BaseCmmaArtifactCommand {
       }).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

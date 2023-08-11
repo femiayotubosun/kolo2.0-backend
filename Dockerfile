@@ -1,4 +1,4 @@
-FROM node:18-16.0-alpine
+FROM node:18-alpine
 LABEL authors="Femi Tubosun | ƒa†3"
 
 WORKDIR /app

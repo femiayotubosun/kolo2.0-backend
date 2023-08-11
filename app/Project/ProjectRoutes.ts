@@ -1,13 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
-
 import HttpStatusCodeEnum from 'App/Common/Helpers/HttpStatusCodeEnum'
-import {
-  ERROR,
-  SUCCESS,
-  UNAUTHORIZED_OPERATION,
-  WELCOME_TO_API,
-} from 'App/Common/Helpers/Messages/SystemMessages'
+import { ERROR, SUCCESS, WELCOME_TO_API } from 'App/Common/Helpers/Messages/SystemMessages'
 
 Route.get('/', async ({ response }) => {
   const statusCode = HttpStatusCodeEnum.OK
@@ -25,13 +19,13 @@ Route.get('health', async ({ response }) => {
   return report.healthy ? response.ok(report) : response.badRequest(report)
 })
 
-Route.any('/Unauthorized', async ({ response }) => {
-  const statusCode = HttpStatusCodeEnum.UNAUTHORIZED
+Route.any('/Unauthenticated', async ({ response }) => {
+  const statusCode = HttpStatusCodeEnum.UNAUTHENTICATED
 
   response.status(statusCode).send({
     status_code: statusCode,
     status: ERROR,
-    message: UNAUTHORIZED_OPERATION,
+    message: 'Invalid Authentication Credentials',
   })
 }).prefix('/Interface')
 

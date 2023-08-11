@@ -6,7 +6,7 @@ import CmmaProjectMapActions from './CmmaProjectMapActions'
 export default class CmmaNodePathActions {
   /**
    * @description What Is System Migrations Directory Node Path
-   * @author FATE
+   * @author ƒa†3
    * @param getSystemMigrationsNodePathOptions
    */
   public static getSystemMigrationsNodePath(getSystemMigrationsNodePathOptions: {
@@ -25,7 +25,7 @@ export default class CmmaNodePathActions {
 
   /**
    * @description What is System's Seeders Directory Node Path
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemSeedersNodePathOptions
    */
   public static getSystemSeedersNodePath(getSystemSeedersNodePathOptions: {
@@ -44,7 +44,7 @@ export default class CmmaNodePathActions {
 
   /**
    * @description List the Migrations Directories' Node Paths in a Context
-   * @author FATE
+   * @author ƒa†3
    * @param {} listContextMigrationDirectoriesNodePathsOptions
    */
   public static listContextMigrationsNodePaths(listContextMigrationDirectoriesNodePathsOptions: {
@@ -71,7 +71,7 @@ export default class CmmaNodePathActions {
 
   /**
    * @description List a Context's Seeders Directories' Node Path
-   * @author FATE
+   * @author ƒa†3
    * @param {} listContextSeedersNodePathOptions
    */
   public static listContextSeedersNodePath(listContextSeedersNodePathOptions: {

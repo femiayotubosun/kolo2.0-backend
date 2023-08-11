@@ -146,6 +146,6 @@ export default class Validator extends BaseCmmaArtifactCommand {
       }),
       CmmaModuleActions.listModuleValidators(this.moduleMap).length - 1,
     ]
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

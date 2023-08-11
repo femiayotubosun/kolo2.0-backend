@@ -56,6 +56,18 @@ export default class UserRegistrationStepActions {
   }
 
   /**
+   * @description Method to get a UserRegistrationStep record by its userId
+   * @author CMMA-CLI
+   * @static
+   * @param {number} userId
+   * @returns {*}  {(Promise<UserRegistrationStep | null>)}
+   * @memberof UserRegistrationStepActions
+   */
+  private static async getUserRegistrationStepRecordByUserId(userId: number) {
+    return UserRegistrationStep.query().where('userId', userId).first()
+  }
+
+  /**
    * @description Method to get a UserRegistrationStep Record
    * @author CMMA-CLI
    * @static
@@ -73,6 +85,8 @@ export default class UserRegistrationStepActions {
 
       identifier: async () =>
         await this.getUserRegistrationStepRecordByIdentifier(String(identifier)),
+
+      userId: async () => await this.getUserRegistrationStepRecordByUserId(Number(identifier)),
     }
 
     return await GetUserRegistrationStep[identifierType]()

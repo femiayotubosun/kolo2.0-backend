@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { column } from '@ioc:Adonis/Lucid/Orm'
 import AbstractModel from 'App/Common/Models/AbstractBaseModel'
+import { NOT_APPLICABLE } from 'App/Common/Helpers/Messages/SystemMessages'
 
 export default class UserProfile extends AbstractModel {
   @column({ isPrimary: true })
@@ -63,26 +64,22 @@ export default class UserProfile extends AbstractModel {
   })
   public hasAgreedToTerms: boolean | string
 
-  @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
-  })
-  public hasAgreedToStandardSavingsTerms: boolean | string
-
-  @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
-  })
-  public hasAgreedToVaultSavingsTerms: boolean | string
-
-  @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
-  })
-  public hasAgreedToTargetSavingsTerms: boolean | string
-
-  @column({
-    consume: (value: number) => (value === 1 ? 'Yes' : 'No'),
-  })
-  public hasAgreedToDollarSavingsTerms: boolean | string
-
   @column()
   public profilePictureUrl: string | null
+
+  public get forClient() {
+    return {
+      customerCode: this.customerCode ?? NOT_APPLICABLE,
+      username: this.username,
+      accountLevel: this.accountLevel,
+      referralCode: this.referralCode || NOT_APPLICABLE,
+      gender: this.gender || NOT_APPLICABLE,
+      dateOfBirth: this.gender || NOT_APPLICABLE,
+      hasVerifiedBvn: this.hasVerifiedBvn,
+      hasVerifiedNin: this.hasVerifiedNin,
+      hasUploadedUtilityBill: this.hasUploadedUtilityBill,
+      hasAgreedToTerms: this.hasAgreedToTerms,
+      profilePictureUrl: this.profilePictureUrl || NOT_APPLICABLE,
+    }
+  }
 }

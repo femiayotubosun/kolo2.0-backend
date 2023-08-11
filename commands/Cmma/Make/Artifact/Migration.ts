@@ -222,6 +222,6 @@ export default class Migration extends BaseCmmaArtifactCommand {
       }).length - 1,
     ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

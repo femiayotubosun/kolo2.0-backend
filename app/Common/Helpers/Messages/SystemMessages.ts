@@ -446,3 +446,6 @@ export const USER_UNLIKED_POST_FAIL = 'User Unliked Post Fail'
 export const USER_HAS_NOT_LIKED_POST = 'User has liked post'
 export const USERNAME_NOT_SET = 'Username not set'
 export const INVALID_ADMIN_ROLES_SPECIFIED = 'Invalid Admin Roles Specified'
+
+// User Profile
+export const USER_PROFILE = 'User Profile'

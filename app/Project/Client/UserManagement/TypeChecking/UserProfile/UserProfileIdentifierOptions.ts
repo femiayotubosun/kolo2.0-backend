@@ -1,6 +1,6 @@
 type UserProfileIdentifierOptions =
   | {
-      identifierType: 'id'
+      identifierType: 'id' | 'userId'
       identifier: number
     }
   | {

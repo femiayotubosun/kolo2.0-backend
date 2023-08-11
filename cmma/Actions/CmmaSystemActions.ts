@@ -10,7 +10,7 @@ import CmmaConfigurationActions from './CmmaConfigurationActions'
 export default class CmmaSystemActions {
   /**
    * @description Add a CmmaModule To a System
-   * @author FATE
+   * @author ƒa†3
    * @param {} addModuleToSystemOptions
    */
   public static addModuleToSystem(addModuleToSystemOptions: {
@@ -27,7 +27,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get a Module's index by Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getModuleIndexByLabelOptions
    */
   public static getModuleIndexByLabel(getModuleIndexByLabelOptions: {
@@ -41,7 +41,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description List Modules in a System
-   * @author FATE
+   * @author ƒa†3
    * @param {CmmaSystem} system
    */
   public static listModulesInSystem(system: CmmaSystem) {
@@ -50,7 +50,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description List System Artifacts Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} system
    */
   public static listSystemArtifactGroups(system: CmmaSystem) {
@@ -59,7 +59,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description List Systemm Abstract Artifacts Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} system
    */
   public static listSystemAbstractArtifactGroups(system: CmmaSystem) {
@@ -68,7 +68,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description E.g List Models, List Controllers
-   * @author FATE
+   * @author ƒa†3
    * @param {} listSystemArtifactsByGroupLabelOptions
    */
   public static listSystemArtifactsByGroupLabel(listSystemArtifactsByGroupLabelOptions: {
@@ -82,7 +82,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param {} listSystemAbstractArtifactsByGroupLabelOptions
    */
   public static listSystemAbstractArtifactsByGroupLabel(listSystemAbstractArtifactsByGroupLabelOptions: {
@@ -96,7 +96,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Add an Artifact to System Artifact Group
-   * @author FATE
+   * @author ƒa†3
    * @param {} addArtifactToArtifactGroupOptions
    */
   public static addArtifactToArtifactGroup(addArtifactToArtifactGroupOptions: {
@@ -116,7 +116,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Add an abstract artifact to Project
-   * @author FATE
+   * @author ƒa†3
    * @param {} addAbstractArtifactToAbstractArtifactGroupOptions
    */
   public static addAbstractArtifactToAbstractArtifactGroup(addAbstractArtifactToAbstractArtifactGroupOptions: {
@@ -137,7 +137,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get an Artifact Object from System Artifact Group
-   * @author FATE
+   * @author ƒa†3
    * @param {} getArtifactObjectFromArtifactGroupOptions
    */
   public static getArtifactObjectFromArtifactGroupByLabel(getArtifactObjectFromArtifactGroupOptions: {
@@ -159,7 +159,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get abstract Artifact from Abstract Artifact Group By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getAbstractArtifactFromAbstractArtifactGroupByLabelOptions
    */
   public static getAbstractArtifactFromAbstractArtifactGroupByLabel(getAbstractArtifactFromAbstractArtifactGroupByLabelOptions: {
@@ -180,7 +180,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get an Artifact Object from Artifact Group by Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getArtifactObjectFromArtifactGroupByIndexOptions
    */
   public static getArtifactObjectFromArtifactGroupByIndex(getArtifactObjectFromArtifactGroupByIndexOptions: {
@@ -201,7 +201,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get abstract Artifact from Abstract Artifact Group By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getAbstractArtifactFromAbstractArtifactGroupByLabelOptions
    */
   public static getAbstractArtifactFromAbstractArtifactGroupByIndex(getAbstractArtifactFromAbstractArtifactGroupByLabelOptions: {
@@ -222,7 +222,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete an Artifact Object from System Artifact Group
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteArtifactObjectFromArtifactGroupOptions
    */
   public static deleteArtifactObjectFromArtifactGroupByLabel(deleteArtifactObjectFromArtifactGroupOptions: {
@@ -244,7 +244,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete an Abstract Artifact from System Abstract Artifact Group By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteAbstractArtifactFromAbstractArtifactGroupByLabelOptions
    */
   public static deleteAbstractArtifactFromAbstractArtifactGroupByLabel(deleteAbstractArtifactFromAbstractArtifactGroupByLabelOptions: {
@@ -267,7 +267,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete an Artifact Object from Artifact Group by Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteArtifactObjectFromArtifactGroupByIndexOptions
    */
   public static deleteArtifactObjectFromArtifactGroupByIndex(deleteArtifactObjectFromArtifactGroupByIndexOptions: {
@@ -288,7 +288,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete an Abstract Artifact from System Abstract Artifact Group By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteAbstractArtifactFromAbstractArtifactGroupByLabelOptions
    */
   public static deleteAbstractArtifactFromAbstractArtifactGroupByIndex(deleteAbstractArtifactFromAbstractArtifactGroupByLabelOptions: {
@@ -309,7 +309,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get A Module By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getModuleByLabelOptions
    */
   public static getModuleMapByLabel(getModuleByLabelOptions: {
@@ -323,7 +323,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get A System Artifact By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemArtifactByLabelOptions
    */
   public static getSystemArtifactByLabel(getSystemArtifactByLabelOptions: {
@@ -337,7 +337,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get a Module By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getModuleByIndexOptions
    */
   public static getModuleByIndex(getModuleByIndexOptions: {
@@ -356,7 +356,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Get System Artifact By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemArtifactByIndexOptions
    */
   public static getSystemArtifactByIndex(getSystemArtifactByIndexOptions: {
@@ -379,7 +379,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete Module By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteModuleByLabelOptions
    */
   public static deleteModuleByLabel(deleteModuleByLabelOptions: {
@@ -393,7 +393,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete System Artifact By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteSystemArtifactByLabelOptions
    */
   public static deleteSystemArtifactByLabel(deleteSystemArtifactByLabelOptions: {
@@ -407,7 +407,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Delete Module By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteModuleByIndexOptions
    */
   public static deleteModuleByIndex(deleteModuleByIndexOptions: {
@@ -426,7 +426,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Check if Module Is In System
-   * @author FATE
+   * @author ƒa†3
    * @param {} isModuleInSystemOptions
    */
   public static isModuleInSystem(isModuleInSystemOptions: {
@@ -440,7 +440,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Check if System Artifact is in System
-   * @author FATE
+   * @author ƒa†3
    * @param isSystemArtifactInSystemOptions
    */
   public static isArtifactInSystemArtifactGroup(isSystemArtifactInSystemOptions: {
@@ -472,7 +472,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description List Appwrite Seeders in System
-   * @author FATE
+   * @author ƒa†3
    * @param {} listSystemAppwriteSeedersOptions
    */
   public static listSystemAppwriteSeeders(listSystemAppwriteSeedersOptions: {
@@ -494,7 +494,7 @@ export default class CmmaSystemActions {
 
   /**
    * @description Method to get a blank System Map
-   * @author FATE
+   * @author ƒa†3
    * @returns {CmmaSystem}
    */
   public static get blankSystemMap(): CmmaSystem {

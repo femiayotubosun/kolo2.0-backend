@@ -4,7 +4,7 @@ import CmmaSystem from '../Models/CmmaSystem'
 export default class CmmaContextActions {
   /**
    * @description Add a System to the context
-   * @author FATE
+   * @author ƒa†3
    * @param {} addSystemToContextOptions
    */
   public static addSystemToContext(addSystemToContextOptions: {
@@ -21,7 +21,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Get a System's Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemIndexByLabelOptions
    */
   public static getSystemIndexByLabel(getSystemIndexByLabelOptions: {
@@ -35,7 +35,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Get a Context System By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemByIndexOptions
    */
   public static getContextSystemByIndex(getSystemByIndexOptions: {
@@ -53,7 +53,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Get a Context System By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getContextSystemByLabel
    */
   public static getContextSystemMapByLabel(getContextSystemByLabel: {
@@ -67,7 +67,7 @@ export default class CmmaContextActions {
 
   /**
    * @description List Systems in Context
-   * @author FATE
+   * @author ƒa†3
    * @param {CmmaContext} contextMap
    */
   public static listSystemsInContext(contextMap: CmmaContext) {
@@ -76,7 +76,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Delete a Context System By Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getSystemByIndexOptions
    */
   public static deleteContextSystemByIndex(getSystemByIndexOptions: {
@@ -94,7 +94,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Delete a Context System By Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getContextSystemByLabel
    */
   public static deleteContextSystemByLabel(getContextSystemByLabel: {
@@ -108,7 +108,7 @@ export default class CmmaContextActions {
 
   /**
    * @description Is System in Context
-   * @author FATE
+   * @author ƒa†3
    * @param isSystemInContextOptions
    */
   public static isSystemInContext(isSystemInContextOptions: {
@@ -121,7 +121,7 @@ export default class CmmaContextActions {
 
   /**
    * @description What is Contexts' View Filename
-   * @author FATE
+   * @author ƒa†3
    * @param context
    */
   public static whatIsContextLabel(context: CmmaContext) {
@@ -130,7 +130,7 @@ export default class CmmaContextActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    */
   public static get blankContext(): CmmaContext {
     return {

@@ -58,6 +58,50 @@ export default class UserProfileActions {
   }
 
   /**
+   * @description Method to get UserProfile record by userId
+   * @author FATE
+   * @param {number} userId
+   * @static
+   * @memberof UserProfileActions
+   */
+  public static async getUserProfileRecordByUserId(userId: number) {
+    return UserProfile.query().where('userId', userId).first()
+  }
+
+  /**
+   * @description Method to get UserProfile record by customerCode
+   * @author FATE
+   * @param {string} customerCode
+   * @static
+   * @memberof UserProfileActions
+   */
+  public static async getUserProfileRecordByCustomerCode(customerCode: string) {
+    return UserProfile.query().where('customerCode', customerCode).first()
+  }
+
+  /**
+   * @description Method to get UserProfile record by referralCode
+   * @author FATE
+   * @param {string} referralCode
+   * @static
+   * @memberof UserProfileActions
+   */
+  public static async getUserProfileRecordByReferralCode(referralCode: string) {
+    return UserProfile.query().where('referralCode', referralCode).first()
+  }
+
+  /**
+   * @description Method to get UserProfile record by username
+   * @author FATE
+   * @param {string} username
+   * @static
+   * @memberof UserProfileActions
+   */
+  public static async getUserProfileRecordByUsername(username: string) {
+    return UserProfile.query().where('username', username).first()
+  }
+
+  /**
    * @description Method to get a UserProfile Record
    * @author CMMA-CLI
    * @static
@@ -74,6 +118,14 @@ export default class UserProfileActions {
       id: async () => await this.getUserProfileRecordById(Number(identifier)),
 
       identifier: async () => await this.getUserProfileRecordByIdentifier(String(identifier)),
+
+      userId: async () => await this.getUserProfileRecordByUserId(Number(identifier)),
+
+      customerCode: async () => await this.getUserProfileRecordByCustomerCode(String(identifier)),
+
+      referralCode: async () => await this.getUserProfileRecordByReferralCode(String(identifier)),
+
+      username: async () => await this.getUserProfileRecordByUsername(String(identifier)),
     }
 
     return await GetUserProfile[identifierType]()

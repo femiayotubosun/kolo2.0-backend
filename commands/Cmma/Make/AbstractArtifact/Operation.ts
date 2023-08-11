@@ -81,7 +81,7 @@ export default class Operation extends BaseCmmaAbstractArtifactCommand {
    * @description Add Artifacts to Project Map Step
    * @protected
    * @returns void
-   * @author FATE
+   * @author ƒa†3
    */
   protected async addArtifactsToProjectMapCommandStep() {
     for (let artifact of this.abstractArtifactConstituents) {
@@ -244,6 +244,6 @@ export default class Operation extends BaseCmmaAbstractArtifactCommand {
     //   }).length - 1,
     // ]
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

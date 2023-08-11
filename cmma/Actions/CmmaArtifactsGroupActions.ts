@@ -4,7 +4,7 @@ import CmmaArtifactsGroup from '../Models/CmmaArtifactsGroup'
 export default class ArtifactGroupActions {
   /**
    * @description Add an Artifact to ArtifactGroup
-   * @author FATE
+   * @author ƒa†3
    * @param {} addArtifactToArtifactsGroupOptions
    */
   public static addArtifactToArtifactsGroup(addArtifactToArtifactsGroupOptions: {
@@ -18,7 +18,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description Get Artifact from ArtifactsGroup by Label
-   * @author FATE
+   * @author ƒa†3
    * @param {} getArtifactByLabelOptions
    */
   public static getArtifactByLabel(getArtifactByLabelOptions: {
@@ -32,7 +32,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description Get Artifact from ArtifactsGroup by Index
-   * @author FATE
+   * @author ƒa†3
    * @param {} getArtifactByIndexOptions
    */
   public static getArtifactByIndex(getArtifactByIndexOptions: {
@@ -46,7 +46,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteArtifactFromArtifactsGroupByLabelOptions
    */
   public static deleteArtifactFromArtifactsGroupByLabel(deleteArtifactFromArtifactsGroupByLabelOptions: {
@@ -62,7 +62,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    * @param {} deleteArtifactFromArtifactGroupByIndexOptions
    */
   public static deleteArtifactFromArtifactGroupByIndex(deleteArtifactFromArtifactGroupByIndexOptions: {
@@ -81,7 +81,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description Check Artifact in Artifacts Group
-   * @author FATE
+   * @author ƒa†3
    * @param {} isArtifactInArtifactsGroupOptions
    */
   public static isArtifactInArtifactsGroup(isArtifactInArtifactsGroupOptions: {
@@ -95,7 +95,7 @@ export default class ArtifactGroupActions {
 
   /**
    * @description
-   * @author FATE
+   * @author ƒa†3
    */
   public static blankArtifactsGroup(): CmmaArtifactsGroup {
     return []

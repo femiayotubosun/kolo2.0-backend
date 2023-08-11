@@ -139,10 +139,10 @@ export abstract class BaseCmmaCommand extends BaseCommand {
   |--------------------------------------------------------------------------------
   |
   */
-  protected finishCmmaCommand() {
+  protected async finishCmmaCommand() {
     this.logCommand()
 
-    CmmaFileActions.writeConfigObjectToConfigFile({
+    await CmmaFileActions.writeConfigObjectToConfigFile({
       configObject: this.PROJECT_CONFIG,
       configFilePath: this.CONFIG_FILE_PATH,
     })

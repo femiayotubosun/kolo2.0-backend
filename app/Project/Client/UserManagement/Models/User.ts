@@ -67,21 +67,29 @@ export default class User extends AbstractModel {
 
   @hasOne(() => UserRegistrationStep)
   public userRegistrationStep: HasOne<typeof UserRegistrationStep>
-  //
-  // @hasOne(() => Wallet, {
-  //   foreignKey: 'userId',
-  // })
-  // public akibaWallet: HasOne<typeof Wallet>
-  //
-  // @hasMany(() => StandardSaving, {
-  //   foreignKey: 'userId',
-  // })
-  // public standardSavings: HasMany<typeof StandardSaving>
 
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password!)
+    }
+  }
+
+  public get forClient() {
+    return {
+      identifier: this.identifier,
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      fullName: this.fullName,
+      accountType: this.accountType,
+      mobileNumber: this.mobileNumber,
+      hasVerifiedEmail: this.hasVerifiedEmail,
+      meta: {
+        createdAt: this.createdAt,
+        updatedAt: this.updatedAt,
+        lastLoginDate: this.lastLoginDate,
+      },
     }
   }
 }

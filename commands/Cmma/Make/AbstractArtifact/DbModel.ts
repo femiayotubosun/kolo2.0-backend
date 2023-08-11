@@ -109,6 +109,6 @@ export default class ModelOptions extends BaseCmmaAbstractArtifactCommand {
 
     await this.generate()
 
-    this.finishCmmaCommand()
+    await this.finishCmmaCommand()
   }
 }

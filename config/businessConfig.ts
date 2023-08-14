@@ -27,6 +27,14 @@ const businessConfig = {
   customEncryptionKey: Env.get('CUSTOM_ENCRYPTION_KEY'),
 
   accessTokenExpirationTimeFrame: Env.get('ACCESS_TOKEN_EXPIRATION_TIME_FRAME', 10),
+
+  wallet: {
+    accountNumberPrefix: 'KOW',
+
+    accountNumberLength: 11,
+
+    defaultBalance: Env.get('DEFAULT_WALLET_BALANCE_IN_KOBO'),
+  },
 }
 
 export default businessConfig

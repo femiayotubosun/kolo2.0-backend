@@ -18,6 +18,7 @@ import UserProfileActions from 'App/Project/Client/UserManagement/Actions/UserPr
 import UserRegistrationStepActions from 'App/Project/Client/UserManagement/Actions/UserRegistrationStepActions'
 import OtpTokenActions from 'App/Project/Client/UserManagement/Actions/OtpTokenActions'
 import { Queue } from '@ioc:Setten/Queue'
+import FinanceSystem from 'App/Project/Client/Finance/FinanceSystem'
 
 export default class CreateNewCustomerController {
   /*
@@ -36,6 +37,7 @@ export default class CreateNewCustomerController {
   |--------------------------------------------------------------------------------
   |
   */
+  private clientFinanceSystem = FinanceSystem
 
   /*
   |--------------------------------------------------------------------------------
@@ -108,6 +110,15 @@ export default class CreateNewCustomerController {
         },
         createPayload: {
           userId: newUser.id,
+        },
+      })
+
+      await this.clientFinanceSystem.createWalletRecord({
+        dbTransactionOptions: { useTransaction: true, dbTransaction },
+        createPayload: {
+          userId: newUser.id,
+          accountNumber: this.clientFinanceSystem.generateWalletAccountNumber(),
+          balance: businessConfig.wallet.defaultBalance.toString(),
         },
       })
 

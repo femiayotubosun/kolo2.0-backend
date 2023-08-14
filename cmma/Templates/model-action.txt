@@ -22,13 +22,13 @@ export default class {{ filename }} {
 
     const {{ modelVariableName }} = new {{ modelName }}()
 
-    Object.assign({{ modelVariableName }}, createPayload)
+    await {{ modelVariableName }}.fill(createPayload)
 
     if (dbTransactionOptions.useTransaction) {
       {{ modelVariableName }}.useTransaction(dbTransactionOptions.dbTransaction)
     }
 
-    return await {{ modelVariableName }}.save()
+    return {{ modelVariableName }}.save()
   }
 
   /**
@@ -92,7 +92,7 @@ export default class {{ filename }} {
 
     if ({{ modelVariableName }} === this.{{ modelNameInCaps }}_RECORD_NOT_FOUND) return this.{{ modelNameInCaps }}_RECORD_NOT_FOUND
 
-    Object.assign({{ modelVariableName }}, updatePayload)
+    await {{ modelVariableName }}.fill(updatePayload)
 
     if (dbTransactionOptions.useTransaction) {
       {{ modelVariableName }}.useTransaction(dbTransactionOptions.dbTransaction)

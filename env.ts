@@ -36,6 +36,8 @@ export default Env.rules({
   DEFAULT_EMAIL_SENDER_NAME: Env.schema.string(),
   DEFAULT_EMAIL_SENDER_ADDRESS: Env.schema.string(),
 
+  DEFAULT_WALLET_BALANCE_IN_KOBO: Env.schema.number(),
+
   DB_CONNECTION: Env.schema.string(),
   PG_HOST: Env.schema.string({ format: 'host' }),
   PG_PORT: Env.schema.number(),

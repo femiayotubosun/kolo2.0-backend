@@ -1,1 +1,2 @@
 import './WalletManagementRoutes'
+import './CardsManagementRoutes'

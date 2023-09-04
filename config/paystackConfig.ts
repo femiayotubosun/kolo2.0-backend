@@ -1,13 +1,13 @@
+import Env from '@ioc:Adonis/Core/Env'
+
 const paystackConfig = {
   identifier: 'paystack',
 
-  secretKey: '',
+  secretKey: Env.get('PAYSTACK_SECRET_KEY'),
 
-  initializeTransactionEndpoint: '',
+  initializeTransactionEndpoint: 'https://api.paystack.co/transaction/initialize/',
 
-  createCustomerEndpoint: '',
-
-  verifyTransactionEndpoint: '',
+  verifyTransactionEndpoint: 'https://api.paystack.co/transaction/verify/',
 
   chargeAuthorizationEndpoint: '',
 }

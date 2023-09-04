@@ -92,7 +92,7 @@ export default class {{ filename }} {
 
     if ({{ modelVariableName }} === this.{{ modelNameInCaps }}_RECORD_NOT_FOUND) return this.{{ modelNameInCaps }}_RECORD_NOT_FOUND
 
-    await {{ modelVariableName }}.fill(updatePayload)
+    await {{ modelVariableName }}.merge(updatePayload)
 
     if (dbTransactionOptions.useTransaction) {
       {{ modelVariableName }}.useTransaction(dbTransactionOptions.dbTransaction)
